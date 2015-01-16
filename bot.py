@@ -21,16 +21,17 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         utils
     ]
     bots = {
-        "!bot": ModBot.ModBot(),
-        "!boobies": ModBoobies.ModBoobies(),
-        "!md5": ModMd5.ModMd5(),
-        "!rmd5": ModRmd5.ModRmd5(),
-        "!stat": ModStat.ModStat()
+        "!bot": None,
+        "!boobies": None,
+        "!md5": None,
+        "!rmd5": None,
+        "!stat": None
     }
 
 
     def __init__(self):
         ircbot.SingleServerIRCBot.__init__(self, [("irc.worldnet.net", 6667)], self.name, "Bot de Pixis")
+        self.init_bots()
 
     def on_welcome(self, serv, ev):
         #serv.join(self.canal)
@@ -71,3 +72,13 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     def check_reload(self):
         for value in self.mods:
             value = reload(value)
+        self.init_bots()
+
+    def init_bots(self):
+        self.bots = {
+            "!bot": ModBot.ModBot(),
+            "!boobies": ModBoobies.ModBoobies(),
+            "!md5": ModMd5.ModMd5(),
+            "!rmd5": ModRmd5.ModRmd5(),
+            "!stat": ModStat.ModStat()
+        }
