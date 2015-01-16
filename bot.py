@@ -12,8 +12,15 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     canal_test = "#pixistest"
     name = "PixiBot"
     flood_time = 3
-
-    mods = {
+    mods = [
+        ModBot,
+        ModBoobies,
+        ModStat,
+        ModRmd5,
+        ModMd5,
+        utils
+    ]
+    bots = {
         "!bot": ModBot.ModBot(),
         "!boobies": ModBoobies.ModBoobies(),
         "!md5": ModMd5.ModMd5(),
@@ -38,13 +45,14 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         handle = irclib.nm_to_n(ev.source())
         canal = ev.target()
         message = ev.arguments()[0]
-        self.mods['!stat'].update_counts(handle)
-
-        for mod, value in self.mods.items():
+        self.bots['!stat'].update_counts(handle)
+        if '!reloadPix' == message:
+            self.check_reload()
+        for mod, value in self.bots.items():
             if mod in message:
                 if not self.check_flood(serv, handle):
                     custom_message = utils.extract_message(message, mod)
-                    self.mods[mod].execute(serv, canal, handle, custom_message)
+                    self.bots[mod].execute(serv, canal, handle, custom_message)
 
     def check_flood(self, serv, handle):
         self.current_time = time.time()
@@ -59,3 +67,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
             self.first_flood = True
             self.last_time = time.time()
             return False
+        
+    def check_reload(self):
+        for value in self.mods:
+            value = reload(value)
