@@ -72,14 +72,14 @@ class BetezedBot(ircbot.SingleServerIRCBot):
             return False
 
     def check_reload(self, serv, canal, handle, message):
-        message = ""
+        mod_loaded = ""
         for key, value in self.mods.items():
             parts = value['module'].split(".")
             module = parts[2]
             if module != "ModStat" or ("force" == message and "Pixis" == handle):
-                message = message + " " + module
+                mod_loaded = mod_loaded + " " + module
                 key = reload(key)
-        serv.privmsg(canal, "* Reload des modules" + message + " *")
+        serv.privmsg(canal, "* Reload des modules" + mod_loaded + " *")
         self.init_mods()
 
     def init_mods(self):
