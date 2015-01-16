@@ -26,8 +26,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         ircbot.SingleServerIRCBot.__init__(self, [("irc.worldnet.net", 6667)], self.name, "Bot de Pixis")
 
     def on_welcome(self, serv, ev):
-        serv.join(self.canal)
-        #serv.join(self.canal_test)
+        #serv.join(self.canal)
+        serv.join(self.canal_test)
 
     def on_kick(self, serv, ev):
         canal = ev.target()
