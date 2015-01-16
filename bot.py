@@ -32,7 +32,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
 
     def __init__(self):
         ircbot.SingleServerIRCBot.__init__(self, [("irc.worldnet.net", 6667)], self.name, "Bot de Pixis")
-        self.init_bots()
+        self.init_mods()
 
     def on_welcome(self, serv, ev):
         # serv.join(self.canal)
@@ -47,13 +47,13 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         handle = irclib.nm_to_n(ev.source())
         canal = ev.target()
         message = ev.arguments()[0]
-        self.bots['!stat'].update_counts(handle)
+        self.mods[ModStat]['instance'].update_counts(handle)
         if '!reloadPix' == message:
             self.check_reload()
-        for mod, value in self.bots.items():
+        for mod, value in self.mods.items():
             if value['cmd'] in message:
                 if not self.check_flood(serv, handle):
-                    custom_message = utils.extract_message(message, mod)
+                    custom_message = utils.extract_message(message, value['cmd'])
                     self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
 
     def check_flood(self, serv, handle):
@@ -73,9 +73,9 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     def check_reload(self):
         for key, value in self.mods.items():
             key = reload(key)
-        self.init_bots()
+        self.init_mods()
 
-    def init_bots(self):
+    def init_mods(self):
         for key, mod in self.mods.items():
             self.mods[key]['instance'] = self.get_class(mod['module'])()
 
