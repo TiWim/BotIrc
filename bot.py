@@ -76,9 +76,17 @@ class BetezedBot(ircbot.SingleServerIRCBot):
 
     def init_bots(self):
         self.bots = {
-            "!bot": ModBot.ModBot(),
+            "!bot": self.get_class('ModBot.ModBot'),
             "!boobies": ModBoobies.ModBoobies(),
             "!md5": ModMd5.ModMd5(),
             "!rmd5": ModRmd5.ModRmd5(),
             "!stat": ModStat.ModStat()
         }
+
+    def get_class(kls):
+        parts = kls.split('.')
+        module = ".".join(parts[:-1])
+        m = __import__( module )
+        for comp in parts[1:]:
+            m = getattr(m, comp)
+        return m
