@@ -35,8 +35,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         self.init_mods()
 
     def on_welcome(self, serv, ev):
-        # serv.join(self.canal)
-        serv.join(self.canal_test)
+        serv.join(self.canal)
+        #serv.join(self.canal_test)
 
     def on_kick(self, serv, ev):
         canal = ev.target()
@@ -48,8 +48,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         canal = ev.target()
         message = ev.arguments()[0]
         self.mods[ModStat]['instance'].update_counts(handle)
-        if '!reloadPix' in message:
-            custom_message = utils.extract_message(message, '!reloadPix')
+        if '!reload' in message and "Pixis" == handle:
+            custom_message = utils.extract_message(message, '!reload')
             self.check_reload(serv, canal, handle, custom_message)
         for mod, value in self.mods.items():
             if value['cmd'] in message:
@@ -76,7 +76,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         for key, value in self.mods.items():
             parts = value['module'].split(".")
             module = parts[2]
-            if module != "ModStat" or ("force" == message and "Pixis" == handle):
+            if module != "ModStat" or "force" == message:
                 mod_loaded = mod_loaded + " " + module
                 key = reload(key)
         serv.privmsg(canal, "* Reload des modules" + mod_loaded + " *")
