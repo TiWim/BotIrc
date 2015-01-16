@@ -49,20 +49,20 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         message = ev.arguments()[0]
         self.mods[ModStat]['instance'].update_counts(handle)
         if '!reloadPix' == message:
-            self.check_reload()
+            self.check_reload(serv, canal)
         for mod, value in self.mods.items():
             if value['cmd'] in message:
-                if not self.check_flood(serv, handle):
+                if not self.check_flood(serv, canal, handle):
                     custom_message = utils.extract_message(message, value['cmd'])
                     self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
 
-    def check_flood(self, serv, handle):
+    def check_flood(self, serv, canal, handle):
         self.current_time = time.time()
         if self.current_time - self.last_time < self.flood_time:
             print "Flood : " + str(self.current_time) + " - " + str(self.last_time)
             self.last_time = time.time()
             if self.first_flood:
-                serv.privmsg(self.canal, "Hey doucement " + handle + ", je ne suis pas un robot !")
+                serv.privmsg(canal, "Hey doucement " + handle + ", je ne suis pas un robot !")
                 self.first_flood = False
             return True
         else:
@@ -70,9 +70,14 @@ class BetezedBot(ircbot.SingleServerIRCBot):
             self.last_time = time.time()
             return False
 
-    def check_reload(self):
+    def check_reload(self, serv, canal):
+        message = ""
         for key, value in self.mods.items():
             key = reload(key)
+            parts = value['module'].split(".")
+            module = parts[2]
+            message = message + " " + module
+        serv.privmsg(canal, "* Reload des modules" + message + " *")
         self.init_mods()
 
     def init_mods(self):
