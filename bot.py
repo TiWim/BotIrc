@@ -40,7 +40,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         message = ev.arguments()[0]
         self.mods['!stat'].update_counts(handle)
 
-        for mod, value in self.mods:
+        for mod, value in self.mods.items():
             if mod in message:
                 if not self.check_flood(serv, handle):
                     custom_message = utils.extract_message(message, mod)
