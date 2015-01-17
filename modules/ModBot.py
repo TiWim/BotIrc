@@ -1,6 +1,3 @@
-import irclib
-import ircbot
-
 class ModBot:
     def __init__(self):
         pass

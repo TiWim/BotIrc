@@ -1,5 +1,3 @@
-import irclib
-import ircbot
 import urllib2
 import re
 

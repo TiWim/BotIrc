@@ -1,6 +1,5 @@
 import time
-import irclib
-import ircbot
+from lib import ircbot, irclib
 from modules import ModBot, ModBoobies, ModStat, ModRmd5, ModMd5, utils
 
 
@@ -35,8 +34,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         self.init_mods()
 
     def on_welcome(self, serv, ev):
-        serv.join(self.canal)
-        #serv.join(self.canal_test)
+        #serv.join(self.canal)
+        serv.join(self.canal_test)
 
     def on_kick(self, serv, ev):
         canal = ev.target()
@@ -84,12 +83,4 @@ class BetezedBot(ircbot.SingleServerIRCBot):
 
     def init_mods(self):
         for key, mod in self.mods.items():
-            self.mods[key]['instance'] = self.get_class(mod['module'])()
-
-    def get_class(self, kls):
-        parts = kls.split('.')
-        module = ".".join(parts[:-1])
-        m = __import__(module)
-        for comp in parts[1:]:
-            m = getattr(m, comp)
-        return m
+            self.mods[key]['instance'] = utils.get_class(mod['module'])()

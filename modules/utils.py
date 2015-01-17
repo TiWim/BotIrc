@@ -11,3 +11,11 @@ def extract_message(s, mod):
         return s[1]
     else:
         return ""
+
+def get_class(cls):
+    parts = cls.split('.')
+    module = ".".join(parts[:-1])
+    m = __import__(module)
+    for comp in parts[1:]:
+        m = getattr(m, comp)
+    return m

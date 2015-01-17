@@ -1,9 +1,7 @@
-import irclib
-import ircbot
-import utils
 import operator
 from datetime import date
 
+import utils
 
 
 class ModStat:

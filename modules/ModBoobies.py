@@ -1,5 +1,3 @@
-import irclib
-import ircbot
 import random
 import urllib2
 import re
