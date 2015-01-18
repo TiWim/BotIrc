@@ -79,6 +79,8 @@ class ModStat:
                 stats[key]['detailed'].append(dict(handle=current_handle['handle'],
                                                    messages=int(current_handle['messages'])))
             value.pop('mongo', None)
+            stats[key]['detailed'] = sorted(stats[key]['detailed'], key=lambda k: k['messages'], reverse=True)
+
         # Total
         stats['day']['total'] = self.day_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
         stats['day']['total'] = int(stats['day']['total']['result'][0]['total'])
@@ -91,7 +93,6 @@ class ModStat:
 
         print str(stats)
 
-        sorted_x = sorted(self.count_message_daily.items(), key=operator.itemgetter(1), reverse=True)
         first_poster = sorted_x[0][0]
         first_poster_messages = sorted_x[0][1]
         message_spell = "messages" if total > 1 else "message"
