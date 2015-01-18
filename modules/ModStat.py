@@ -101,13 +101,15 @@ class ModStat:
 
         for key, value in stats.items():
             message_spell = "messages" if value['total'] > 1 else "message"
-            serv.privmsg(handle, value['title'])
-            serv.privmsg(handle, "Total : " + str(value['total']) + " " + message_spell)
+            serv.privmsg(handle, "\00301\002" + value['title'])
+            serv.privmsg(handle, "\002Total :\017 " + str(value['total']) + " " + message_spell)
             if utils.is_numeric(message):
-                for num in range(0, min(message, len(value['detailed']))):
+                for num in range(0, min(message, len(value['detailed'])) - 1):
                     message_spell = "messages" if value['detailed'][num]['messages'] > 1 else "message"
-                    serv.privmsg(handle, str(num + 1) + ". " + value['detailed'][num]['handle'] + ": " + str(value['detailed'][num]['messages']) + " " + message_spell)
-            serv.privmsg(handle, "")
+                    serv.privmsg(handle, "\002" + str(num + 1) + ". "
+                                 + value['detailed'][num]['handle']
+                                 + ": \017" + str(value['detailed'][num]['messages']) + " " + message_spell)
+            serv.privmsg(handle, "****************")
 
     @staticmethod
     def find_handle(handle, collection):
