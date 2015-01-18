@@ -30,9 +30,6 @@ class ModStat:
         pass
 
     def update_counts(self, handle):
-        print "Day: " + str(date.today().day) + " vs " + str(self.last_day)
-        print "Week: " + str(date.today().weekday()) + " vs 0 and " + str(self.week_reset)
-        print "Month: " + str(date.today().month) + " vs " + str(self.last_month)
         if date.today().day != self.last_day:
             print "#Day: " + str(date.today().day) + " vs " + str(self.last_day)
             self.reset_count('day')
@@ -58,6 +55,7 @@ class ModStat:
         if self.find_handle(handle, self.day_collection) is not None:
             day_user = self.find_handle(handle, self.day_collection)
             day_user['messages'] += 1
+            print str(day_user)
             ref = {'_id': day_user['_id']}
             self.day_collection.update(ref, day_user)
         else:
@@ -137,8 +135,6 @@ class ModStat:
         stats['all']['total'] = self.all_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
         stats['all']['total'] = int(stats['all']['total']['result'][0]['total'])
 
-        print str(stats)
-
         sorted_x = sorted(self.count_message_daily.items(), key=operator.itemgetter(1), reverse=True)
         first_poster = sorted_x[0][0]
         first_poster_messages = sorted_x[0][1]
@@ -165,8 +161,8 @@ class ModStat:
     @staticmethod
     def find_handle(handle, collection):
         handles = []
-        collection = collection.find({'handle': handle})
-        for user in collection:
+        users = collection.find({'handle': handle})
+        for user in users:
             user['_id'] = str(user['_id'])
             handles.append(user)
         if len(handles) == 0:
