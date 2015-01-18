@@ -30,17 +30,20 @@ class ModStat:
         pass
 
     def update_counts(self, handle):
+        print "Day: " + date.today().day + " vs " + self.last_day
+        print "Week: " + date.today().weekday() + " vs 0 and " + str(self.week_reset)
+        print "Month: " + date.today().month + " vs " + self.last_month
         if date.today().day != self.last_day:
-            print "Day: " + date.today().day + " vs " + self.last_day
+            print "#Day: " + date.today().day + " vs " + self.last_day
             self.reset_count('day')
         if date.today().weekday() == 1 and self.week_reset is False:
-            print "Week: " + date.today().weekday() + " vs 0"
+            print "#Week: " + date.today().weekday() + " vs 0"
             self.week_reset = True
             self.reset_count('week')
         if date.today().weekday() != 1 and self.week_reset is True:
             self.week_reset = False
         if date.today().month != self.last_month:
-            print "Month: " + date.today().month + " vs " + self.last_month
+            print "#Month: " + date.today().month + " vs " + self.last_month
             self.reset_count('month')
 
         self.add_count(handle)
