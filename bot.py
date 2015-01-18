@@ -30,6 +30,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     }
 
     def __init__(self):
+        print "Bot start " + self.name
         ircbot.SingleServerIRCBot.__init__(self, [("irc.worldnet.net", 6667)], self.name, "Bot de Pixis")
         self.init_mods()
 

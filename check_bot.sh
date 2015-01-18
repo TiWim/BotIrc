@@ -1,11 +1,40 @@
 #!/bin/bash
-ISAWAKE=$(ps aux | grep bot | head -n1 | grep py -c)
+if [ $# -eq 0 ]
+then
+    ARG=0
+else
+    ARG=$1
+fi
+ISAWAKE=$(ps aux | grep botnc/main | head -n1 | grep py -c)
 if [ $ISAWAKE -ne 1 ]
 then
-    screen -X -S botnc quit
-    screen -S botnc -d -m /usr/bin/python /home/betezed/botnc/main.py
-    date +"%y-%m-%d %T Restart" >> /home/betezed/botnc/log.txt
+    if [ $ARG -eq 1 ]
+    then
+        echo "Eteint"
+    else
+        echo "Launching ..."
+        screen -X -S botnc quit
+        screen -L -S botnc -d -m /bin/bash run.sh
+        date +"%y-%m-%d %T Restart" >> /home/betezed/botnc/log.txt
+        sleep 1
+        AWAKE=$(ps aux | grep botnc/main | head -n1 | grep py -c)
+        if [ $AWAKE -eq 1 ]
+        then
+            PROCESS=$(ps aux | grep botnc/main | head -n1 | awk -F " " '{print $2}')
+            echo "Launched with PID $PROCESS"
+        else
+            echo "Failure."
+        fi
+
+    fi
 else
-    ps aux | grep bot | head -n1 | awk -F " " '{print $2}'
-    echo "Allumé"
+    PROCESS=$(ps aux | grep bot | head -n1 | awk -F " " '{print $2}')
+    if [ $ARG -eq 1 ]
+    then
+        echo $PROCESS
+        echo "Allumé"
+    else 
+        kill $PROCESS
+        echo "Process $PROCESS killed"
+    fi
 fi
