@@ -89,7 +89,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     def log_message(self, message):
         if self.name in message:
             with open("log.txt", "a") as logfile:
-                logfile.write("raw : " + message + ")\n")
+                logfile.write("raw : " + message + "\n")
         for mod, value in self.mods.items():
             if value['cmd'] in message:
                 custom_message = utils.extract_message(message, value['cmd'])
