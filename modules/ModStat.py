@@ -113,6 +113,7 @@ class ModStat:
 
         for key, value in stats.items():
             for current_handle in value['mongo']:
+                print key
                 print str(current_handle)
                 print current_handle['handle']
                 print current_handle['messages']
