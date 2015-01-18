@@ -34,8 +34,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         self.init_mods()
 
     def on_welcome(self, serv, ev):
-        #serv.join(self.canal)
-        serv.join(self.canal_test)
+        serv.join(self.canal)
+        #serv.join(self.canal_test)
 
     def on_kick(self, serv, ev):
         canal = ev.target()

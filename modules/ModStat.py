@@ -1,10 +1,12 @@
 import operator
 from datetime import date
-
+from pymongo import MongoClient
 import utils
 
 
 class ModStat:
+    # Stats
+
     count_message_daily = {}
     count_message_weekly = {}
     count_message_monthly = {}
@@ -13,6 +15,15 @@ class ModStat:
     last_week = date.today().weekday()
     last_month = date.today().month
     max_stats = 5
+
+    # Mongo
+
+    client = MongoClient()
+    db = client.botncDB
+    day_collection = db.day
+    week_collection = db.week
+    month_collection = db.month
+    all_collection = db.all
 
     def __init__(self):
         pass
@@ -27,23 +38,71 @@ class ModStat:
         self.add_count(handle)
 
     def add_count(self, handle):
-        self.count_message_daily[handle] = 1 if handle not in self.count_message_daily.keys() else self.count_message_daily[handle] + 1
-        self.count_message_weekly[handle] = 1 if handle not in self.count_message_weekly.keys() else self.count_message_weekly[handle] + 1
-        self.count_message_monthly[handle] = 1 if handle not in self.count_message_monthly.keys() else self.count_message_monthly[handle] + 1
-        self.count_message_all[handle] = 1 if handle not in self.count_message_all.keys() else self.count_message_all[handle] + 1
+        day_user = {}
+        week_user = {}
+        month_user = {}
+        all_user = {}
+
+        # Day
+        if self.find_handle(handle, self.day_collection) is not None:
+            day_user = self.find_handle(handle, self.day_collection)
+            day_user['messages'] += 1
+            ref = {'_id': day_user['_id']}
+            self.day_collection.update(ref, day_user)
+        else:
+            day_user['handle'] = handle
+            day_user['messages'] = 1
+            self.day_collection.insert(day_user)
+
+        # Week
+        if self.find_handle(handle, self.week_collection) is not None:
+            week_user = self.find_handle(handle, self.week_collection)
+            week_user['messages'] += 1
+            ref = {'_id': week_user['_id']}
+            self.week_collection.update(ref, week_user)
+        else:
+            week_user['handle'] = handle
+            week_user['messages'] = 1
+            self.week_collection.insert(week_user)
+
+        # Month
+        if self.find_handle(handle, self.month_collection) is not None:
+            month_user = self.find_handle(handle, self.month_collection)
+            month_user['messages'] += 1
+            ref = {'_id': month_user['_id']}
+            self.month_collection.update(ref, month_user)
+        else:
+            month_user['handle'] = handle
+            month_user['messages'] = 1
+            self.month_collection.insert(month_user)
+
+        # All
+        if self.find_handle(handle, self.all_collection) is not None:
+            all_user = self.find_handle(handle, self.all_collection)
+            all_user['messages'] += 1
+            ref = {'_id': all_user['_id']}
+            self.all_collection.update(ref, all_user)
+        else:
+            all_user['handle'] = handle
+            all_user['messages'] = 1
+            self.all_collection.insert(all_user)
 
     def reset_count(self, period):
         if period == 'month':
             self.last_month = date.today().month
-            self.count_message_monthly = {}
+            self.month_collection.remove({})
         elif period == 'week':
             self.last_week = date.today().weekday()
-            self.count_message_weekly = {}
+            self.week_collection.remove({})
         elif period == 'day':
             self.last_day = date.today().day
-            self.count_message_daily = {}
-    
+            self.day_collection.remove({})
+
     def execute(self, serv, canal, handle, message):
+        total_day = self.day_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
+        total_day = total_day['total']
+        print total_day
+        exit
         total = 0
         for item in self.count_message_daily:
             total += self.count_message_daily[item]
@@ -53,16 +112,30 @@ class ModStat:
         message_spell = "messages" if total > 1 else "message"
         serv.privmsg(handle, "Il y a eu \002" + str(total) + " " + message_spell + "\017 aujourd'hui sur \002" + canal)
         message_spell = "messages" if first_poster_messages > 1 else "message"
-        serv.privmsg(handle, first_poster + " est le plus bavard avec " + str(first_poster_messages) + " " + message_spell + " aujourd'hui !")
+        serv.privmsg(handle, first_poster + " est le plus bavard avec " + str(
+            first_poster_messages) + " " + message_spell + " aujourd'hui !")
         if utils.is_numeric(message):
             message = int(message)
             print "On va afficher les " + str(message) + " dernieres stats"
             if message > self.max_stats:
-                serv.privmsg(handle, "(L'historique ne remonte qu'aux " + str(self.max_stats) + " premiers posteurs de la journee)")
+                serv.privmsg(handle, "(L'historique ne remonte qu'aux " + str(
+                    self.max_stats) + " premiers posteurs de la journee)")
                 message = self.max_stats
             for num in range(1, min(message, len(sorted_x))):
                 rank = num
                 rank += 1
                 message_spell = "messages" if sorted_x[num][1] > 1 else "message"
 
-                serv.privmsg(handle, str(rank) + ". " + sorted_x[num][0] + ": " + str(sorted_x[num][1]) + " " + message_spell)
+                serv.privmsg(handle,
+                             str(rank) + ". " + sorted_x[num][0] + ": " + str(sorted_x[num][1]) + " " + message_spell)
+
+    @staticmethod
+    def find_handle(handle, collection):
+        handles = []
+        collection = collection.find({'handle': handle})
+        for user in collection:
+            user['_id'] = str(user['_id'])
+            handles.append(user)
+        if len(handles) == 0:
+            return None
+        return handles[0]
