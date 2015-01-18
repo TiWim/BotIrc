@@ -97,10 +97,10 @@ class ModStat:
 
         for key, value in stats.items():
             print value['title']
-            print "Total : " + str(value['total']) + "messages"
+            print "Total : " + str(value['total']) + " messages"
             if utils.is_numeric(message):
-                for num in range(1, min(message, len(value['detailed']))):
-                    print str(num) + ". " + value['detailed'][num-1]['handle'] + ": " + str(value['detailed'][num-1]['messages']) + " messages"
+                for num in range(0, min(message, len(value['detailed']))):
+                    print str(num + 1) + ". " + value['detailed'][num]['handle'] + ": " + str(value['detailed'][num]['messages']) + " messages"
             print ""
 
         first_poster = sorted_x[0][0]
