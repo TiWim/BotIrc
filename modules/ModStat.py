@@ -42,58 +42,13 @@ class ModStat:
         if date.today().month != self.last_month:
             print "#Month: " + str(date.today().month) + " vs " + str(self.last_month)
             self.reset_count('month')
-
         self.add_count(handle)
 
     def add_count(self, handle):
-        day_user = {}
-        week_user = {}
-        month_user = {}
-        all_user = {}
-
-        # Day
-        if self.find_handle(handle, self.day_collection) is not None:
-            day_user = self.find_handle(handle, self.day_collection)
-            day_user['messages'] += 1
-            ref = {'_id': day_user['_id']}
-            self.day_collection.update(ref, {'$inc': {'messages': 1}})
-        else:
-            day_user['handle'] = handle
-            day_user['messages'] = 1
-            self.day_collection.insert(day_user)
-
-        # Week
-        if self.find_handle(handle, self.week_collection) is not None:
-            week_user = self.find_handle(handle, self.week_collection)
-            week_user['messages'] += 1
-            ref = {'_id': week_user['_id']}
-            self.week_collection.update(ref, week_user)
-        else:
-            week_user['handle'] = handle
-            week_user['messages'] = 1
-            self.week_collection.insert(week_user)
-
-        # Month
-        if self.find_handle(handle, self.month_collection) is not None:
-            month_user = self.find_handle(handle, self.month_collection)
-            month_user['messages'] += 1
-            ref = {'_id': month_user['_id']}
-            self.month_collection.update(ref, month_user)
-        else:
-            month_user['handle'] = handle
-            month_user['messages'] = 1
-            self.month_collection.insert(month_user)
-
-        # All
-        if self.find_handle(handle, self.all_collection) is not None:
-            all_user = self.find_handle(handle, self.all_collection)
-            all_user['messages'] += 1
-            ref = {'_id': all_user['_id']}
-            self.all_collection.update(ref, all_user)
-        else:
-            all_user['handle'] = handle
-            all_user['messages'] = 1
-            self.all_collection.insert(all_user)
+        self.day_collection.update({'handle': handle}, {'$inc': {'messages': 1}}, upsert=True)
+        self.week_collection.update({'handle': handle}, {'$inc': {'messages': 1}}, upsert=True)
+        self.month_collection.update({'handle': handle}, {'$inc': {'messages': 1}}, upsert=True)
+        self.all_collection.update({'handle': handle}, {'$inc': {'messages': 1}}, upsert=True)
 
     def reset_count(self, period):
         if period == 'month':
@@ -133,6 +88,8 @@ class ModStat:
         stats['month']['total'] = int(stats['month']['total']['result'][0]['total'])
         stats['all']['total'] = self.all_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
         stats['all']['total'] = int(stats['all']['total']['result'][0]['total'])
+
+        print str(stats)
 
         sorted_x = sorted(self.count_message_daily.items(), key=operator.itemgetter(1), reverse=True)
         first_poster = sorted_x[0][0]
