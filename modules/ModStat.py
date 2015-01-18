@@ -55,9 +55,8 @@ class ModStat:
         if self.find_handle(handle, self.day_collection) is not None:
             day_user = self.find_handle(handle, self.day_collection)
             day_user['messages'] += 1
-            print str(day_user)
             ref = {'_id': day_user['_id']}
-            self.day_collection.update(ref, day_user)
+            self.day_collection.update(ref, {'$inc': {'messages': 1}})
         else:
             day_user['handle'] = handle
             day_user['messages'] = 1
