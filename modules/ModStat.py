@@ -64,6 +64,10 @@ class ModStat:
     def execute(self, serv, canal, handle, message):
 
         stats = dict(day={}, week={}, month={}, all={})
+        stats['day']['title'] = "Daily statistics"
+        stats['week']['title'] = "Weekly statistics"
+        stats['month']['title'] = "Monthly statistics"
+        stats['all']['title'] = "All time statistics"
 
         # Detailed
         stats['day']['mongo'] = self.day_collection.find({})
@@ -91,7 +95,13 @@ class ModStat:
         stats['all']['total'] = self.all_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
         stats['all']['total'] = int(stats['all']['total']['result'][0]['total'])
 
-        print str(stats)
+        for key, value in stats.values():
+            print value['title']
+            print "Total : " + str(value['total']) + "messages"
+            if utils.is_numeric(message):
+                for num in range(1, min(message, len(value['detailed']))):
+                    print str(num) + ". " + value['detailed'][num-1]['handle'] + ": " + str(value['detailed'][num-1]['messages']) + " messages"
+            print ""
 
         first_poster = sorted_x[0][0]
         first_poster_messages = sorted_x[0][1]
