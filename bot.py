@@ -46,6 +46,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         handle = irclib.nm_to_n(ev.source())
         canal = ev.target()
         message = ev.arguments()[0]
+        self.log_message(message)
         self.mods[ModStat]['instance'].update_counts(handle)
         if '!reload' in message and "Pixis" == handle:
             custom_message = utils.extract_message(message, '!reload')
@@ -55,9 +56,6 @@ class BetezedBot(ircbot.SingleServerIRCBot):
                 if not self.check_flood(serv, canal, handle):
                     custom_message = utils.extract_message(message, value['cmd'])
                     self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
-                    logfile = open("log.txt", "w")
-                    logfile.write(value['cmd'] + " " + custom_message + " (raw : " + message + ")\n")
-                    logfile.close()
 
     def check_flood(self, serv, canal, handle):
         self.current_time = time.time()
@@ -87,3 +85,15 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     def init_mods(self):
         for key, mod in self.mods.items():
             self.mods[key]['instance'] = utils.get_class(mod['module'])()
+
+    def log_message(self, message):
+        if self.name in message:
+            logfile = open("log.txt", "w")
+            logfile.write("raw : " + message + ")\n")
+            logfile.close()
+        for mod, value in self.mods.items():
+            if value['cmd'] in message:
+                custom_message = utils.extract_message(message, value['cmd'])
+                logfile = open("log.txt", "w")
+                logfile.write(value['cmd'] + " " + custom_message + " (raw : " + message + ")\n")
+                logfile.close()
