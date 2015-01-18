@@ -104,13 +104,19 @@ class ModStat:
 
         # Detailed
         stats['day']['mongo'] = self.day_collection.find({})
-        stats['week']['mongo'] = self.day_collection.find({})
-        stats['month']['mongo'] = self.day_collection.find({})
-        stats['all']['mongo'] = self.day_collection.find({})
+        stats['week']['mongo'] = self.week_collection.find({})
+        stats['month']['mongo'] = self.month_collection.find({})
+        stats['all']['mongo'] = self.all_collection.find({})
 
         for key, value in stats.items():
-            for handles in value['mongo']:
-                print str(handles)
+            stats[key]['detailed'] = []
+
+        for key, value in stats.items():
+            for current_handle in value['mongo']:
+                stats[key]['detailed'].append(dict(handle=current_handle['handle'],
+                                                   messages=int(current_handle['messages'])))
+        print str(stats)
+
 
         # Total
         stats['day']['total'] = self.day_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
