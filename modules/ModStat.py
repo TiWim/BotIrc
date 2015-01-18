@@ -103,6 +103,7 @@ class ModStat:
         stats['all']['total'] = self.all_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
         stats['all']['total'] = int(stats['all']['total']['result'][0]['total'])
 
+        serv.privmsg(handle, "\00303\002Messages count statistics")
         for key, value in stats.items():
             message_spell = "messages" if value['total'] > 1 else "message"
             serv.privmsg(handle, "\00302\002" + value['title'])
