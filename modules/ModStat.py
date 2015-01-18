@@ -112,8 +112,8 @@ class ModStat:
             stats[key]['detailed'] = []
 
         for key, value in stats.items():
-            print str(current_handle)
             for current_handle in value['mongo']:
+                print str(current_handle)
                 stats[key]['detailed'].append(dict(handle=current_handle['handle'],
                                                    messages=int(current_handle['messages'])))
             value.pop('mongo', None)
