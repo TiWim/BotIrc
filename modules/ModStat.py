@@ -114,11 +114,12 @@ class ModStat:
         for key, value in stats.items():
             for current_handle in value['mongo']:
                 print str(current_handle)
+                print current_handle['handle']
+                print current_handle['messages']
+                print ""
                 stats[key]['detailed'].append(dict(handle=current_handle['handle'],
                                                    messages=int(current_handle['messages'])))
             value.pop('mongo', None)
-
-        print str(stats)
 
 
         # Total
@@ -130,6 +131,8 @@ class ModStat:
         stats['month']['total'] = int(stats['month']['total']['result'][0]['total'])
         stats['all']['total'] = self.all_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
         stats['all']['total'] = int(stats['all']['total']['result'][0]['total'])
+
+        print str(stats)
 
         sorted_x = sorted(self.count_message_daily.items(), key=operator.itemgetter(1), reverse=True)
         first_poster = sorted_x[0][0]
