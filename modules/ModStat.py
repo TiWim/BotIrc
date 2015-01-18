@@ -2,6 +2,7 @@ import operator
 from datetime import date
 from pymongo import MongoClient
 import utils
+from collections import OrderedDict
 
 
 class ModStat:
@@ -63,7 +64,7 @@ class ModStat:
 
     def execute(self, serv, canal, handle, message):
 
-        stats = dict(day={}, week={}, month={}, all={})
+        stats = OrderedDict(day={}, week={}, month={}, all={})
 
         # Message title
         stats['day']['title'] = "Daily statistics"
@@ -101,7 +102,7 @@ class ModStat:
 
         for key, value in stats.items():
             message_spell = "messages" if value['total'] > 1 else "message"
-            serv.privmsg(handle, "\00301\002" + value['title'])
+            serv.privmsg(handle, "\00302\002" + value['title'])
             serv.privmsg(handle, "\002Total :\017 " + str(value['total']) + " " + message_spell)
             if utils.is_numeric(message):
                 for num in range(0, min(message, len(value['detailed'])) - 1):
