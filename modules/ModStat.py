@@ -51,33 +51,37 @@ class ModStat:
         self.all_collection.update({'handle': handle}, {'$inc': {'messages': 1}}, upsert=True)
 
     def reset_count(self, period):
-        if period == 'month':
-            self.last_month = date.today().month
-            self.month_collection.remove({})
+        if period == 'day':
+            self.last_day = date.today().day
+            self.day_collection.remove({})
         elif period == 'week':
             self.last_week = date.today().weekday()
             self.week_collection.remove({})
-        elif period == 'day':
-            self.last_day = date.today().day
-            self.day_collection.remove({})
+        elif period == 'month':
+            self.last_month = date.today().month
+            self.month_collection.remove({})
 
     def execute(self, serv, canal, handle, message):
 
         stats = dict(day={}, week={}, month={}, all={})
+
+        # Message title
         stats['day']['title'] = "Daily statistics"
         stats['week']['title'] = "Weekly statistics"
         stats['month']['title'] = "Monthly statistics"
         stats['all']['title'] = "All time statistics"
 
-        # Detailed
+        # Mongo information
         stats['day']['mongo'] = self.day_collection.find({})
         stats['week']['mongo'] = self.week_collection.find({})
         stats['month']['mongo'] = self.month_collection.find({})
         stats['all']['mongo'] = self.all_collection.find({})
 
+        # Array initialization
         for key, value in stats.items():
             stats[key]['detailed'] = []
 
+        # Detailed information
         for key, value in stats.items():
             for current_handle in value['mongo']:
                 stats[key]['detailed'].append(dict(handle=current_handle['handle'],
@@ -85,7 +89,7 @@ class ModStat:
             value.pop('mongo', None)
             stats[key]['detailed'] = sorted(stats[key]['detailed'], key=lambda k: k['messages'], reverse=True)
 
-        # Total
+        # Total count
         stats['day']['total'] = self.day_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
         stats['day']['total'] = int(stats['day']['total']['result'][0]['total'])
         stats['week']['total'] = self.week_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
@@ -96,34 +100,14 @@ class ModStat:
         stats['all']['total'] = int(stats['all']['total']['result'][0]['total'])
 
         for key, value in stats.items():
-            print value['title']
-            print "Total : " + str(value['total']) + " messages"
+            message_spell = "messages" if value['total'] > 1 else "message"
+            serv.privmsg(handle, value['title'])
+            serv.privmsg(handle, "Total : " + str(value['total']) + " " + message_spell)
             if utils.is_numeric(message):
                 for num in range(0, min(message, len(value['detailed']))):
-                    print str(num + 1) + ". " + value['detailed'][num]['handle'] + ": " + str(value['detailed'][num]['messages']) + " messages"
-            print ""
-
-        first_poster = sorted_x[0][0]
-        first_poster_messages = sorted_x[0][1]
-        message_spell = "messages" if total > 1 else "message"
-        serv.privmsg(handle, "Il y a eu \002" + str(total) + " " + message_spell + "\017 aujourd'hui sur \002" + canal)
-        message_spell = "messages" if first_poster_messages > 1 else "message"
-        serv.privmsg(handle, first_poster + " est le plus bavard avec " + str(
-            first_poster_messages) + " " + message_spell + " aujourd'hui !")
-        if utils.is_numeric(message):
-            message = int(message)
-            print "On va afficher les " + str(message) + " dernieres stats"
-            if message > self.max_stats:
-                serv.privmsg(handle, "(L'historique ne remonte qu'aux " + str(
-                    self.max_stats) + " premiers posteurs de la journee)")
-                message = self.max_stats
-            for num in range(1, min(message, len(sorted_x))):
-                rank = num
-                rank += 1
-                message_spell = "messages" if sorted_x[num][1] > 1 else "message"
-
-                serv.privmsg(handle,
-                             str(rank) + ". " + sorted_x[num][0] + ": " + str(sorted_x[num][1]) + " " + message_spell)
+                    message_spell = "messages" if value['detailed'][num]['messages'] > 1 else "message"
+                    serv.privmsg(handle, str(num + 1) + ". " + value['detailed'][num]['handle'] + ": " + str(value['detailed'][num]['messages']) + " " + message_spell)
+            serv.privmsg(handle, "")
 
     @staticmethod
     def find_handle(handle, collection):
