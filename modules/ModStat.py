@@ -15,6 +15,7 @@ class ModStat:
     last_week = date.today().weekday()
     last_month = date.today().month
     max_stats = 5
+    week_reset = False
 
     # Mongo
 
@@ -30,11 +31,18 @@ class ModStat:
 
     def update_counts(self, handle):
         if date.today().day != self.last_day:
+            print "Day: " + date.today().day + " vs " + self.last_day
             self.reset_count('day')
-        if date.today().weekday() == 0:
+        if date.today().weekday() == 1 and self.week_reset is False:
+            print "Week: " + date.today().weekday() + " vs 0"
+            self.week_reset = True
             self.reset_count('week')
+        if date.today().weekday() != 1 and self.week_reset is True:
+            self.week_reset = False
         if date.today().month != self.last_month:
+            print "Month: " + date.today().month + " vs " + self.last_month
             self.reset_count('month')
+
         self.add_count(handle)
 
     def add_count(self, handle):
@@ -113,16 +121,9 @@ class ModStat:
 
         for key, value in stats.items():
             for current_handle in value['mongo']:
-                print key
-                print str(current_handle)
-                print current_handle['handle']
-                print current_handle['messages']
-                print ""
                 stats[key]['detailed'].append(dict(handle=current_handle['handle'],
                                                    messages=int(current_handle['messages'])))
             value.pop('mongo', None)
-
-
         # Total
         stats['day']['total'] = self.day_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
         stats['day']['total'] = int(stats['day']['total']['result'][0]['total'])
