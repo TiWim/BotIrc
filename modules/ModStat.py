@@ -99,13 +99,28 @@ class ModStat:
             self.day_collection.remove({})
 
     def execute(self, serv, canal, handle, message):
-        total_day = self.day_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
-        total_day = total_day['total']
-        print total_day
+
+        stats = dict(day={}, week={}, month={}, all={})
+
+        # Detailed
+        stats['day']['detailed'] = self.day_collection.find({})
+        stats['week']['detailed'] = self.day_collection.find({})
+        stats['month']['detailed'] = self.day_collection.find({})
+        stats['all']['detailed'] = self.day_collection.find({})
+
+        print str(stats['day']['detailed'])
         exit
-        total = 0
-        for item in self.count_message_daily:
-            total += self.count_message_daily[item]
+
+        # Total
+        stats['day']['total'] = self.day_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
+        stats['day']['total'] = int(stats['day']['total']['result'][0]['total'])
+        stats['week']['total'] = self.week_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
+        stats['week']['total'] = int(stats['week']['total']['result'][0]['total'])
+        stats['month']['total'] = self.month_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
+        stats['month']['total'] = int(stats['month']['total']['result'][0]['total'])
+        stats['all']['total'] = self.all_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
+        stats['all']['total'] = int(stats['all']['total']['result'][0]['total'])
+
         sorted_x = sorted(self.count_message_daily.items(), key=operator.itemgetter(1), reverse=True)
         first_poster = sorted_x[0][0]
         first_poster_messages = sorted_x[0][1]
