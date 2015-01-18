@@ -95,7 +95,7 @@ class ModStat:
         stats['all']['total'] = self.all_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
         stats['all']['total'] = int(stats['all']['total']['result'][0]['total'])
 
-        for key, value in stats.values():
+        for key, value in stats.items():
             print value['title']
             print "Total : " + str(value['total']) + "messages"
             if utils.is_numeric(message):
