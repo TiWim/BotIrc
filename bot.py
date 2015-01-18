@@ -55,6 +55,9 @@ class BetezedBot(ircbot.SingleServerIRCBot):
                 if not self.check_flood(serv, canal, handle):
                     custom_message = utils.extract_message(message, value['cmd'])
                     self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
+                    logfile = open("log.txt", "w")
+                    logfile.write(value['cmd'] + " " + custom_message + " (raw : " + message + ")\n")
+                    logfile.close()
 
     def check_flood(self, serv, canal, handle):
         self.current_time = time.time()
