@@ -63,8 +63,11 @@ class ModStat:
             self.month_collection.remove({})
 
     def execute(self, serv, canal, handle, message):
-
-        stats = OrderedDict(day={}, week={}, month={}, all={})
+        stats = OrderedDict()
+        stats['day'] = {}
+        stats['week'] = {}
+        stats['month'] = {}
+        stats['all'] = {}
 
         # Message title
         stats['day']['title'] = "Daily statistics"
