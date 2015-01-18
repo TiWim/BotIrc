@@ -110,7 +110,7 @@ class ModStat:
             serv.privmsg(handle, "\002Total :\017 " + str(value['total']) + " " + message_spell)
             if utils.is_numeric(message):
                 for num in range(0, min(message, len(value['detailed'])) - 1):
-                    print str(min(message, len(value['detailed'])) - 1)
+                    print str(message) + " - " + str(len(value['detailed']))
                     message_spell = "messages" if value['detailed'][num]['messages'] > 1 else "message"
                     serv.privmsg(handle, "\002" + str(num + 1) + ". "
                                  + value['detailed'][num]['handle']
