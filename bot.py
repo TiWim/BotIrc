@@ -53,7 +53,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
             custom_message = utils.extract_message(message, '!reload')
             self.check_reload(serv, canal, handle, custom_message)
         for mod, value in self.mods.items():
-            if value['cmd'] in message:
+            if value['cmd'] == message or value['cmd'] + " " in message:
                 if not self.check_flood(serv, canal, handle):
                     custom_message = utils.extract_message(message, value['cmd'])
                     self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
@@ -91,6 +91,9 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         if self.name in message:
             with open("log.txt", "a") as logfile:
                 logfile.write("raw : " + message + "\n")
+        if "pixis" in message.lower():
+            with open("log.txt", "a") as logfile:
+                logfile.write("** " + message + " **\n")
         for mod, value in self.mods.items():
             if value['cmd'] in message:
                 custom_message = utils.extract_message(message, value['cmd'])
