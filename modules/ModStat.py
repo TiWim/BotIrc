@@ -31,6 +31,7 @@ class ModStat:
         pass
 
     def update_counts(self, handle):
+        print str(date.today().weekday()) + " " + str(self.week_reset)
         if date.today().day != self.last_day:
             print "#Day: " + str(date.today().day) + " vs " + str(self.last_day)
             self.reset_count('day')
