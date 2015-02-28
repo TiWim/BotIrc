@@ -14,7 +14,7 @@ then
     else
         echo "Launching ..."
         screen -X -S botnc quit
-        screen -L -S botnc -d -m /bin/bash run.sh
+        screen -L -S botnc -d -m /bin/bash /home/betezed/botnc/run.sh
         date +"%y-%m-%d %T Restart" >> /home/betezed/botnc/log.txt
         sleep 1
         AWAKE=$(ps aux | grep botnc/main | head -n1 | grep py -c)
@@ -22,14 +22,16 @@ then
         then
             PROCESS=$(ps aux | grep botnc/main | head -n1 | awk -F " " '{print $2}')
             echo "Launched with PID $PROCESS"
+            date +"Success !" >> /home/betezed/botnc/log.txt
         else
             echo "Failure."
+            date +"Failure ..." >> /home/betezed/botnc/log.txt
         fi
 
     fi
 else
     PROCESS=$(ps aux | grep bot | head -n1 | awk -F " " '{print $2}')
-    if [ $ARG -eq 1 ]
+    if [ $ARG -ne 1 ]
     then
         echo $PROCESS
         echo "Allumé"

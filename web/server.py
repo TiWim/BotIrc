@@ -40,10 +40,10 @@ def get_stats():
     stats['all'] = {}
 
     # Message title
-    stats['day']['title'] = "Daily statistics"
-    stats['week']['title'] = "Weekly statistics"
-    stats['month']['title'] = "Monthly statistics"
-    stats['all']['title'] = "All time statistics"
+    stats['day']['title'] = "Journalieres"
+    stats['week']['title'] = "Hebdomadaires"
+    stats['month']['title'] = "Mensuelles"
+    stats['all']['title'] = "Depuis toujours"
 
     # Mongo information
     stats['day']['mongo'] = day_collection.find({})

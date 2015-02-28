@@ -1,5 +1,6 @@
 import time
 from lib import ircbot, irclib
+import re
 from modules import ModBot, ModBoobies, ModStat, ModRmd5, ModMd5, utils
 
 
@@ -37,6 +38,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     def on_welcome(self, serv, ev):
         serv.join(self.canal)
         #serv.join(self.canal_test)
+        serv.privmsg('NickServ', "IDENTIFY Niamor40!")
+
 
     def on_kick(self, serv, ev):
         canal = ev.target()
@@ -53,7 +56,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
             custom_message = utils.extract_message(message, '!reload')
             self.check_reload(serv, canal, handle, custom_message)
         for mod, value in self.mods.items():
-            if value['cmd'] == message or value['cmd'] + " " in message:
+            if value['cmd'] == message or re.match(r'^' + value['cmd'] + " ", message) is not None:
                 if not self.check_flood(serv, canal, handle):
                     custom_message = utils.extract_message(message, value['cmd'])
                     self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)

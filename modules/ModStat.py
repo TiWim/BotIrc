@@ -103,18 +103,18 @@ class ModStat:
         stats['all']['total'] = self.all_collection.aggregate([{"$group": {"_id": "null", "total": {"$sum": "$messages"}}}])
         stats['all']['total'] = int(stats['all']['total']['result'][0]['total'])
 
-        serv.privmsg(handle, "\00303\002Messages count statistics")
+        serv.notice(handle, "\00303\002Messages count statistics")
         for key, value in stats.items():
             message_spell = "messages" if value['total'] > 1 else "message"
-            serv.privmsg(handle, "\00302\002" + value['title'])
-            serv.privmsg(handle, "\002Total :\017 " + str(value['total']) + " " + message_spell)
+            serv.notice(handle, "\00302\002" + value['title'])
+            serv.notice(handle, "\002Total :\017 " + str(value['total']) + " " + message_spell)
             if utils.is_numeric(message):
                 for num in range(0, min(int(message), len(value['detailed']))):
                     message_spell = "messages" if value['detailed'][num]['messages'] > 1 else "message"
-                    serv.privmsg(handle, "\002" + str(num + 1) + ". "
+                    serv.notice(handle, "\002" + str(num + 1) + ". "
                                  + value['detailed'][num]['handle']
                                  + ": \017" + str(value['detailed'][num]['messages']) + " " + message_spell)
-            serv.privmsg(handle, "****************")
+            serv.notice(handle, "****************")
 
     @staticmethod
     def find_handle(handle, collection):

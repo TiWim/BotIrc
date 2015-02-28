@@ -3,3 +3,104 @@ Bot start PixiBot
 Bot start PixiBot
 Bot start PixiBot
 Bot start PixiBot
+Bot start PixiBot
+Bot start PixiBot
+Flood : 1421606686.03 - 1421606685.9
+Flood : 1421606686.09 - 1421606686.03
+Flood : 1421606686.09 - 1421606686.09
+Flood : 1421606686.1 - 1421606686.09
+Flood : 1421606686.1 - 1421606686.1
+Flood : 1421606691.43 - 1421606689.42
+Flood : 1421606693.44 - 1421606691.43
+Flood : 1421606695.43 - 1421606693.44
+Flood : 1421606697.44 - 1421606695.43
+Flood : 1421606714.15 - 1421606712.39
+Flood : 1421606715.78 - 1421606714.15
+Madame, page http://www.bonjourmadame.fr/page/1405
+http://41.media.tumblr.com/tumblr_lheph4ftYd1qzy9ouo1_500.jpg
+Madame, page http://www.bonjourmadame.fr/page/1498
+http://40.media.tumblr.com/tumblr_leb5aeqiDt1qzy9ouo1_1280.jpg
+Madame, page http://www.bonjourmadame.fr/page/563
+http://36.media.tumblr.com/9c018e71113596431b127180d490d056/tumblr_mpa0tap9Wa1qzy9ouo1_1280.jpg
+Madame, page http://www.bonjourmadame.fr/page/75
+http://40.media.tumblr.com/4e9fd3c8d51a669be1edeb87d400afe3/tumblr_neifwga5fx1qzy9ouo1_1280.jpg
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/lib/ircbot.py", line 248, in start
+    SimpleIRCClient.start(self)
+  File "/home/betezed/botnc/lib/irclib.py", line 1114, in start
+    self.ircobj.process_forever()
+  File "/home/betezed/botnc/lib/irclib.py", line 229, in process_forever
+    self.process_once(timeout)
+  File "/home/betezed/botnc/lib/irclib.py", line 214, in process_once
+    self.process_data(i)
+  File "/home/betezed/botnc/lib/irclib.py", line 183, in process_data
+    c.process_data()
+  File "/home/betezed/botnc/lib/irclib.py", line 581, in process_data
+    self._handle_event(Event(command, prefix, target, [m]))
+  File "/home/betezed/botnc/lib/irclib.py", line 604, in _handle_event
+    self.irclibobj._handle_event(self, event)
+  File "/home/betezed/botnc/lib/irclib.py", line 325, in _handle_event
+    if handler[1](connection, event) == "NO MORE":
+  File "/home/betezed/botnc/lib/irclib.py", line 1049, in _dispatcher
+    getattr(self, m)(c, e)
+  File "/home/betezed/botnc/bot.py", line 54, in on_pubmsg
+    self.check_reload(serv, canal, handle, custom_message)
+  File "/home/betezed/botnc/bot.py", line 82, in check_reload
+    key = reload(key)
+  File "/home/betezed/botnc/modules/ModStat.py", line 73
+SyntaxError: Non-ASCII character '\xc3' in file /home/betezed/botnc/modules/ModStat.py on line 73, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+Bot start PixiBot
+Bot start PixiBot
+#Day: 19 vs 18
+0 False
+0 False
+#Week: 0 vs 0
+Bot start PixiBot
+#Week: 0 vs 0
+#Day: 20 vs 19
+#Day: 20 vs 19
+Bot start PixiBot
+Bot start PixiBot
+Madame, page http://www.bonjourmadame.fr/page/551
+http://40.media.tumblr.com/cb45a04bc2d8750f96111364936bb18f/tumblr_mq1lmtBqFt1qzy9ouo1_500.jpg
+Madame, page http://www.bonjourmadame.fr/page/1359
+http://41.media.tumblr.com/tumblr_lkleodJ7Eh1qzy9ouo1_1280.jpg
+Flood : 1421791752.2 - 1421791751.83
+Bot start PixiBot
+Bot start PixisBot
+Bot start PixisBot
+Bot start PixisBot
+Bot start PixisBot
+Bot start PixiBot
+#Day: 21 vs 20
+^CTraceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/lib/ircbot.py", line 248, in start
+    SimpleIRCClient.start(self)
+  File "/home/betezed/botnc/lib/irclib.py", line 1114, in start
+    self.ircobj.process_forever()
+  File "/home/betezed/botnc/lib/irclib.py", line 229, in process_forever
+    self.process_once(timeout)
+  File "/home/betezed/botnc/lib/irclib.py", line 213, in process_once
+    (i, o, e) = select.select(sockets, [], [], timeout)
+KeyboardInterrupt
+Bot start PixiBot
+#Day: 22 vs 21
+#Day: 23 vs 22
+#Day: 23 vs 21
+#Day: 24 vs 23
+Bot start PixiBot
+#Week: 0 vs 0
+#Day: 27 vs 26
+#Day: 28 vs 27
+#Day: 29 vs 28
+#Day: 30 vs 29
+#Day: 31 vs 30
+Bot start PixiBot
+#Week: 0 vs 0
+Bot start PixiBot
+#Day: 28 vs 27
+#Day: 28 vs 27
