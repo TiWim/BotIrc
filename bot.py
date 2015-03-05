@@ -1,7 +1,7 @@
 import time
 from lib import ircbot, irclib
 import re
-from modules import ModBot, ModBoobies, ModStat, ModRmd5, ModMd5, utils
+from modules import ModBot, ModBoobies, ModStat, ModRmd5, ModMd5, ModHelp, utils
 
 
 class BetezedBot(ircbot.SingleServerIRCBot):
@@ -27,7 +27,10 @@ class BetezedBot(ircbot.SingleServerIRCBot):
                   "cmd": "!rmd5"},
         ModMd5: {"module": "modules.ModMd5.ModMd5",
                  "instance": None,
-                 "cmd": "!md5"}
+                 "cmd": "!md5"},
+        ModHelp: {"module": "modules.ModHelp.ModHelp",
+                 "instance": None,
+                 "cmd": "!help"}
     }
 
     def __init__(self):
