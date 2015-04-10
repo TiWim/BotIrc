@@ -55,7 +55,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         canal = ev.target()
         message = ev.arguments()[0]
         self.log_message(message)
-        if handle.lower() != "wtf":
+        if re.match(r'^wtf_*', handle.lower()) is not None:
             self.mods[ModStat]['instance'].update_counts(handle)
         if '!reload' in message and "Pixis" == handle:
             custom_message = utils.extract_message(message, '!reload')
