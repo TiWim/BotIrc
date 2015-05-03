@@ -11,4 +11,4 @@ class ModSay:
             else:
                 send_serv = message[0]
                 send_mess = message[1]
-            serv.privmsg(serv, send_mess)
+            serv.privmsg(send_serv, send_mess)
