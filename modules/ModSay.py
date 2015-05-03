@@ -1,9 +1,4 @@
-class ModBot:
-
-    dico = ['test', 'romain']
-    current_word = ""
-    currently_playing = False
-
+class ModSay:
     def __init__(self):
         pass
 

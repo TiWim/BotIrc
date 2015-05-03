@@ -2,7 +2,7 @@ from config import Config
 import time
 from lib import ircbot, irclib
 import re
-from modules import ModBot, ModBoobies, ModStat, ModRmd5, ModMd5, ModHelp, utils
+from modules import ModSay, ModBot, ModBoobies, ModStat, ModRmd5, ModMd5, ModHelp, utils
 
 class BetezedBot(ircbot.SingleServerIRCBot):
     config = Config()
@@ -14,6 +14,9 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     name = "PixiBot"
     flood_time = 3
     mods = {
+        ModSay: {"module": "modules.ModBot.ModSay",
+                 "instance": None,
+                 "cmd": "!say"},
         ModBot: {"module": "modules.ModBot.ModBot",
                  "instance": None,
                  "cmd": "!bot"},
@@ -40,7 +43,6 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         self.init_mods()
 
     def on_welcome(self, serv, ev):
-        global password
         serv.join(self.canal)
         #serv.join(self.canal_test)
         serv.privmsg('NickServ', "IDENTIFY " + self.config.password)
@@ -60,6 +62,16 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         if '!reload' in message and "Pixis" == handle:
             custom_message = utils.extract_message(message, '!reload')
             self.check_reload(serv, canal, handle, custom_message)
+        for mod, value in self.mods.items():
+            if value['cmd'] == message or re.match(r'^' + value['cmd'] + " ", message) is not None:
+                if not self.check_flood(serv, canal, handle):
+                    custom_message = utils.extract_message(message, value['cmd'])
+                    self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
+
+    def on_provmsg(self, serv, ev):
+        handle = irclib.nm_to_n(ev.source())
+        canal = ev.target()
+        message = ev.arguments()[0]
         for mod, value in self.mods.items():
             if value['cmd'] == message or re.match(r'^' + value['cmd'] + " ", message) is not None:
                 if not self.check_flood(serv, canal, handle):
