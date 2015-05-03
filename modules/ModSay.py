@@ -8,7 +8,7 @@ class ModSay:
             if len(message) == 1:
                 send_serv = "#open-newbiecontest"
                 send_mess = message[0]
-            else
+            else:
                 send_serv = message[0]
                 send_mess = message[1]
             serv.privmsg(serv, send_mess)
