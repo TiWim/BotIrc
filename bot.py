@@ -68,7 +68,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
                     custom_message = utils.extract_message(message, value['cmd'])
                     self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
 
-    def on_provmsg(self, serv, ev):
+    def on_privmsg(self, serv, ev):
         handle = irclib.nm_to_n(ev.source())
         canal = ev.target()
         message = ev.arguments()[0]
