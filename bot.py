@@ -14,7 +14,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     name = "PixiBot"
     flood_time = 3
     mods = {
-        ModSay: {"module": "modules.ModBot.ModSay",
+        ModSay: {"module": "modules.ModSay.ModSay",
                  "instance": None,
                  "cmd": "!say"},
         ModBot: {"module": "modules.ModBot.ModBot",
