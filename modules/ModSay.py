@@ -4,7 +4,7 @@ class ModSay:
 
     def execute(self, serv, canal, handle, message):
         if "Pixis" == handle:
-            message = message.split(" ")
+            message = message.split(" ", 1)
             if len(message) == 1:
                 send_serv = "#open-newbiecontest"
                 send_mess = message[0]
