@@ -44,8 +44,15 @@ class BetezedBot(ircbot.SingleServerIRCBot):
 
     def on_welcome(self, serv, ev):
         serv.join(self.canal)
+        serv.join("#nboobz_cmb")
+        serv.join("#0x90r00t")
         #serv.join(self.canal_test)
         serv.privmsg('NickServ', "IDENTIFY " + self.config.password)
+    def on_join(self, serv, ev):
+        handle = irclib.nm_to_n(ev.source())
+        canal = ev.target()
+        if canal == "#0x90r00t":
+            serv.send_raw("MODE " + canal + " +o " + handle)
 
     def on_kick(self, serv, ev):
         canal = ev.target()
@@ -59,7 +66,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         self.log_message(message)
         if re.match(r'^wtf_*', handle.lower()) is None:
             self.mods[ModStat]['instance'].update_counts(handle)
-        if '!reload' in message and "Pixis" == handle:
+        if '!reload' in message and "pixis" == handle.lower():
             custom_message = utils.extract_message(message, '!reload')
             self.check_reload(serv, canal, handle, custom_message)
         for mod, value in self.mods.items():
