@@ -1482,3 +1482,191 @@ Success !
 !stat  (raw : !stat)
 !stat  (raw : !stat)
 !stat  (raw : !stat)
+15-05-03 15:40:01 Restart
+Success !
+15-05-03 15:40:09 Restart
+Failure ...
+!md5 test (raw : !md5 test)
+15-05-03 15:42:15 Restart
+Success !
+!md5 test (raw : !md5 test)
+!say test (raw : !say test)
+!say test double (raw : !say test double)
+15-05-03 15:44:43 Restart
+Success !
+15-05-03 15:47:56 Restart
+Success !
+** !b onjour PixiS **
+** Pixis: C est ecris en fr deja ca pus **
+** Au fait Pixis  **
+raw : !rm PixiBot
+** !rm Pixis **
+** Pixis> [root-me:betezed] Classement : 1857/14264 (420 pts) Challenges : 35/181 réussis (App - Script : 0/9, App - Système : 4/24, Cracking : 1/22, Cryptanalyse : 5/19, Forensic : 0/9, Programmation : 2/8, Réaliste : 1/16, Réseau : 5/17, Stéganographie : 3/9, Web - Client : 7/13, Web - Serveur : 7/35) **
+** je précise que Hackndo, c'est notre ami pixis :P **
+** genre le Pixis il se fait de la pub et tout ! **
+** lu Pixis **
+** bien joué pour webgallerie Pixis **
+** noob Pixis **
+** !k Pixis **
+** lu pixis  **
+** pixis> [root-me:winw] Classement : 193/14307 (2180 pts) Challenges : 103/181 réussis (App - Script : 5/9, App - Système : 7/24, Cracking : 4/22, Cryptanalyse : 11/19, Forensic : 4/9, Programmation : 6/8, Réaliste : 10/16, Réseau : 10/17, Stéganographie : 6/9, Web - Client : 10/13, Web - Serveur : 30/35) **
+** pixis> [root-me] : Login inconnu **
+15-05-06 02:20:01 Restart
+Success !
+15-05-06 09:54:25 Restart
+Success !
+!stat  (raw : !stat)
+15-05-06 09:58:47 Restart
+Success !
+** pixis> [root-me:Nodulaire] Classement : 1303/14315 (610 pts) Challenges : 43/181 réussis (App - Script : 0/9, App - Système : 0/24, Cracking : 2/22, Cryptanalyse : 6/19, Forensic : 0/9, Programmation : 1/8, Réaliste : 0/16, Réseau : 8/17, Stéganographie : 4/9, Web - Client : 9/13, Web - Serveur : 13/35) **
+!rmd5 92920e406dd7a1e5eb7e614f4f95554b (raw : !rmd5 92920e406dd7a1e5eb7e614f4f95554b)
+!rmd5 92920e406dd7a1e5eb7e614f4f95554b (raw : !rmd5 92920e406dd7a1e5eb7e614f4f95554b)
+** pixis.. y'a plusieurs team faut se méfier **
+** <pixis> !yes **
+raw : <PixiBot> KICK BAN FTW !
+** kikou pixis  **
+** j'viens de poster ca a Pixis **
+** !nc Pixis **
+** http://www.newbiecontest.org/index.php?page=info_membre&nick=pixis **
+** Pixis **
+** j'ai mis "demander à Pixis" **
+** <Pixis> sudo apt-get install gobby-infinote **
+** <Pixis> height ou high, faut vous décider les gars ;) **
+** <Pixis> Ouais je sais. Je dis juste, sans prendre partie (parce que ça ne me -nous- regarde pas) que ça plombe l'ambiance, et que je trouve ça dommage **
+15-05-06 19:20:24 Restart
+Success !
+15-05-06 19:20:51 Restart
+Success !
+!help ou /help :) (raw : T'as !help ou /help :))
+** genre Pixis_ il est hop **
+** je l'ai déjà dit à Pixis la dernière fois **
+** Bonne nuit Pixis. **
+raw : PixiBot
+** Pixis **
+** Pixis ok pour mandrake, pas de problème pour moi **
+** c'est bon Pixis, j'ai ma cam :D **
+** Comme je disais à Pixis, y a un Pouet qui s'est join à la team ronin :/ **
+** o/ Pixis  **
+** !wechall pixis **
+** Pixis is ranked 1503 from 12398, linked to 2 sites with an average of 17.91% solved. Pixis has a totalscore of 7054. Pixis needs 2 points to rankup. Pixis plays 2 sites, primary: NC(35.63%), WC(0.18%). **
+** !wechall pixis **
+** Pixis is ranked 1112 from 12399, linked to 2 sites with an average of 26.34% solved. Pixis has a totalscore of 12143. Pixis needs 21 points to rankup. Pixis plays 2 sites, primary: NC(52.50%), WC(0.18%). **
+** !wechall pixis **
+** Pixis is ranked 1087 from 12399, linked to 3 sites with an average of 19.97% solved. Pixis has a totalscore of 12590. Pixis needs 5 points to rankup. Pixis plays 3 sites, primary: NC(52.50%), Root(7.22%), WC(0.18%). **
+** en fait c'est à cause de la casse t'as raison Pixis **
+** j'suis devant Pixis, ça me va **
+** moi ça m'va j'suis devant Pixis **
+** !wechall pixis **
+** Pixis is ranked 1088 from 12399, linked to 3 sites with an average of 19.97% solved. Pixis has a totalscore of 12590. Pixis needs 5 points to rankup.  **
+** ça change qqc Pixis entre UHC1 ou UHC 3 ? **
+** !wechall pixis **
+** Pixis is ranked 1088 from 12399, linked to 3 sites with an average of 19.97% solved. Pixis has a totalscore of 12590. Pixis needs 5 points to rankup.  **
+** !wechall pixis **
+** Pixis is ranked 1084 from 12399, linked to 3 sites with an average of 20.45% solved. Pixis has a totalscore of 12738. Pixis needs 2 points to rankup.  **
+** Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+!help  (raw : !help)
+!boobies  (raw : !boobies)
+** Pixis: pourrit ton !boobies. **
+!boobies  (raw : Pixis: pourrit ton !boobies.)
+**  hésite pas à tester la fct !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** en attendan Pixis s'est fait spam en mp **
+** la commande fait perdre Pixis  **
+** !Pixis **
+!md5 Yaoline (raw : !md5 Yaoline)
+!rmd5 02cbc94d4b2d73e464c7973dfb2fb0c9 (raw : !rmd5 02cbc94d4b2d73e464c7973dfb2fb0c9)
+!rmd5 02cbc94d4b2d73e464c7973dfb2fb0c9 (raw : !rmd5 02cbc94d4b2d73e464c7973dfb2fb0c9)
+!md5 pouarvzizoutte (raw : !md5 pouarvzizoutte)
+!rmd5 fd38b27e9685c4dac451a134293249d2 (raw : !rmd5 fd38b27e9685c4dac451a134293249d2)
+!rmd5 fd38b27e9685c4dac451a134293249d2 (raw : !rmd5 fd38b27e9685c4dac451a134293249d2)
+!rmd5 fd38b27e9685c4dac451a134293249d2 (raw : !rmd5 fd38b27e9685c4dac451a134293249d2)
+!rmd5 fd38b27e9685c4dac451a134293249d2 (raw : !rmd5 fd38b27e9685c4dac451a134293249d2)
+!md5 fd38b27e9685c4dac451a134293249d2 (raw : !md5 fd38b27e9685c4dac451a134293249d2)
+!rmd5 40cb33de5585c415a502905b56ae9ed8 (raw : !rmd5 40cb33de5585c415a502905b56ae9ed8)
+!rmd5 40cb33de5585c415a502905b56ae9ed8 (raw : !rmd5 40cb33de5585c415a502905b56ae9ed8)
+!rmd5 40cb33de5585c415a502905b56ae9ed8 (raw : !rmd5 40cb33de5585c415a502905b56ae9ed8)
+!rmd5 40cb33de5585c415a502905b56ae9ed8 (raw : !rmd5 40cb33de5585c415a502905b56ae9ed8)
+!rmd5 40cb33de5585c415a502905b56ae9ed8 (raw : !rmd5 40cb33de5585c415a502905b56ae9ed8)
+!rmd5 40cb33de5585c415a502905b56ae9ed8 (raw : !rmd5 40cb33de5585c415a502905b56ae9ed8)
+raw : <PixiBot> rmd5(02cbc94d4b2d73e464c7973dfb2fb0c9) =  Yaoline 
+!help  (raw : !help)
+!rmd5 ggggggggggggggggggggggggggaggggg (raw : !rmd5 ggggggggggggggggggggggggggaggggg)
+!md5 coucoubilouttecoucoubiloutte (raw : !md5 coucoubilouttecoucoubiloutte)
+15-05-07 17:45:12 Restart
+Success !
+!md5 coucoubilouttecoucoubiloutte (raw : !md5 coucoubilouttecoucoubiloutte)
+!rmd5 c812f7feb07217ab302c746e58ed6bb8 (raw : !rmd5 c812f7feb07217ab302c746e58ed6bb8)
+!help  (raw : !help)
+!help  (raw : !help)
+!help  (raw : !help)
+!help  (raw : !help)
+** !Pixis **
+** !Pixis **
+** !Pixis **
+** !Pixis **
+!help  (raw : !help)
+** tu t'entraines pour #newbiecontest Pixis ? ^^ **
+!rmd5 02cbc94d4b2d73e464c7973dfb2fb0c9 (raw : !rmd5 02cbc94d4b2d73e464c7973dfb2fb0c9)
+** !md5 PixisIsAwesome **
+!md5 PixisIsAwesome (raw : !md5 PixisIsAwesome)
+!rmd5 dc5b430cb78f6ef329f4fba18ef31da1 (raw : !rmd5 dc5b430cb78f6ef329f4fba18ef31da1)
+!rmd5 f71dbe52628a3f83a77ab494817525c6 (raw : !rmd5 f71dbe52628a3f83a77ab494817525c6)
+!rmd5 af4d628e0ea7731dbdf0cae088aba7fb (raw : !rmd5 af4d628e0ea7731dbdf0cae088aba7fb)
+!rmd5 3cca12013a4f82de305ba73b01a84509 (raw : !rmd5 3cca12013a4f82de305ba73b01a84509)
+** <Xia> il est jaloux parce que Pixis est half-op et pas lui, c'est ta faute Th3_l5D.... **
+** <Xia> t'as mis pixis half op et pas lui, du coup... **
+** yoz, Aste, Pixis pas là **
+raw : sachant que Fracass BoT2GaY PixiBot sont des bots
+!help  (raw : !help)
+raw : et PixiBot il a des plugins non fonctionnels
+!md5 ImABot (raw : !md5 ImABot)
+!rmd5 d0d39344216f4415576abe1d0cb3b71c (raw : !rmd5 d0d39344216f4415576abe1d0cb3b71c)
+!md5 tuvastetgunpeusaletédebot? (raw : !md5 tuvastetgunpeusaletédebot?)
+!rmd5 7d6221755886a8e0ba232589d57f37eb (raw : !rmd5 7d6221755886a8e0ba232589d57f37eb)
+!rmd5 61529519452809720693702583126814 (raw : !rmd5 61529519452809720693702583126814)
+** j'en ai parlé à Pixis hier mais bon... **
+** le truc de pixis **
+** Pixis,  **
+** o/ Pixis  **
+** https://ide.c9.io/the_lsd/nboobz_cmb Pixis  **
+** devrait etre bon Nodulaire et Pixis  **
+** lacheur Pixis :P **
+** tu es sexeh Pixis **
+** Pixis objdump me retourne rien **
+** Pixis : Tu peux me paste le disass de reverse2 sur le collabo stp **
+** Pixis tu m'as pas paste le disass :'( **
+** Pixis il est en mer **
+** il fout quoi le pixis ? il glandouille ? **
+** <Pixis> Tant pis :) Je reviendrai dessus lundi ! Bon WE les gars" **
+15-05-09 04:00:02 Restart
+Success !
+15-05-12 01:00:02 Restart
+Success !
+15-05-19 10:52:39 Restart
+Success !
+** /chanserv AOP #0x090r00t ADD Pixis_ **
+15-05-19 10:59:59 Restart
+Success !
+15-05-19 11:05:03 Restart
+Success !
+15-05-19 11:06:15 Restart
+Success !
+raw : Bon bah j'espère juste que PixiBot ne deco pas x)
+!boobies  (raw : !boobies)

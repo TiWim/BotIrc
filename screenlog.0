@@ -104,3 +104,129 @@ Bot start PixiBot
 Bot start PixiBot
 #Day: 28 vs 27
 #Day: 28 vs 27
+Bot start PixiBot
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/bot.py", line 43, in __init__
+    self.init_mods()
+  File "/home/betezed/botnc/bot.py", line 108, in init_mods
+    self.mods[key]['instance'] = utils.get_class(mod['module'])()
+  File "/home/betezed/botnc/modules/utils.py", line 22, in get_class
+    m = getattr(m, comp)
+AttributeError: 'module' object has no attribute 'ModSay'
+Bot start PixiBot
+Bot start PixiBot
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/lib/ircbot.py", line 248, in start
+    SimpleIRCClient.start(self)
+  File "/home/betezed/botnc/lib/irclib.py", line 1114, in start
+    self.ircobj.process_forever()
+  File "/home/betezed/botnc/lib/irclib.py", line 229, in process_forever
+    self.process_once(timeout)
+  File "/home/betezed/botnc/lib/irclib.py", line 214, in process_once
+    self.process_data(i)
+  File "/home/betezed/botnc/lib/irclib.py", line 183, in process_data
+    c.process_data()
+  File "/home/betezed/botnc/lib/irclib.py", line 581, in process_data
+    self._handle_event(Event(command, prefix, target, [m]))
+  File "/home/betezed/botnc/lib/irclib.py", line 604, in _handle_event
+    self.irclibobj._handle_event(self, event)
+  File "/home/betezed/botnc/lib/irclib.py", line 325, in _handle_event
+    if handler[1](connection, event) == "NO MORE":
+  File "/home/betezed/botnc/lib/irclib.py", line 1049, in _dispatcher
+    getattr(self, m)(c, e)
+  File "/home/betezed/botnc/bot.py", line 64, in on_pubmsg
+    self.check_reload(serv, canal, handle, custom_message)
+  File "/home/betezed/botnc/bot.py", line 102, in check_reload
+    key = reload(key)
+  File "/home/betezed/botnc/modules/ModSay.py", line 11
+    else
+       ^
+SyntaxError: invalid syntax
+Bot start PixiBot
+#Day: 4 vs 3
+#Week: 0 vs 0
+#Day: 5 vs 4
+#Day: 6 vs 5
+Bot start PixiBot
+Bot start PixiBot
+Bot start PixiBot
+Bot start PixiBot
+#Day: 7 vs 6
+Flood : 1431008792.93 - 1431008792.93
+Flood : 1431008792.93 - 1431008792.93
+Flood : 1431008794.0 - 1431008792.93
+Flood : 1431008794.0 - 1431008794.0
+Flood : 1431008794.0 - 1431008794.0
+Flood : 1431008795.12 - 1431008794.0
+Madame, page http://www.bonjourmadame.fr/page/1506
+http://40.media.tumblr.com/tumblr_lhept1FAuM1qzy9ouo1_1280.jpg
+Flood : 1431011089.34 - 1431011088.34
+Flood : 1431011089.35 - 1431011089.35
+Flood : 1431011089.35 - 1431011089.35
+Flood : 1431011089.35 - 1431011089.35
+Flood : 1431011089.58 - 1431011089.35
+Flood : 1431011091.03 - 1431011089.58
+Flood : 1431011097.03 - 1431011095.07
+Flood : 1431011099.04 - 1431011097.03
+Flood : 1431011101.04 - 1431011099.04
+Flood : 1431011103.05 - 1431011101.04
+Flood : 1431011105.1 - 1431011103.05
+Flood : 1431011107.05 - 1431011105.1
+Flood : 1431011109.07 - 1431011107.05
+Flood : 1431011111.07 - 1431011109.07
+Flood : 1431011113.07 - 1431011111.07
+Flood : 1431012659.28 - 1431012659.28
+Flood : 1431012660.34 - 1431012659.28
+Flood : 1431012660.34 - 1431012660.34
+Flood : 1431012660.34 - 1431012660.34
+Flood : 1431012660.34 - 1431012660.34
+Flood : 1431012661.05 - 1431012660.34
+Flood : 1431013168.46 - 1431013167.56
+Flood : 1431013190.59 - 1431013188.17
+Flood : 1431013192.94 - 1431013190.59
+#Day: 7 vs 6
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/lib/ircbot.py", line 248, in start
+    SimpleIRCClient.start(self)
+  File "/home/betezed/botnc/lib/irclib.py", line 1114, in start
+    self.ircobj.process_forever()
+  File "/home/betezed/botnc/lib/irclib.py", line 229, in process_forever
+    self.process_once(timeout)
+  File "/home/betezed/botnc/lib/irclib.py", line 214, in process_once
+    self.process_data(i)
+  File "/home/betezed/botnc/lib/irclib.py", line 183, in process_data
+    c.process_data()
+  File "/home/betezed/botnc/lib/irclib.py", line 581, in process_data
+    self._handle_event(Event(command, prefix, target, [m]))
+  File "/home/betezed/botnc/lib/irclib.py", line 604, in _handle_event
+    self.irclibobj._handle_event(self, event)
+  File "/home/betezed/botnc/lib/irclib.py", line 325, in _handle_event
+    if handler[1](connection, event) == "NO MORE":
+  File "/home/betezed/botnc/lib/irclib.py", line 1049, in _dispatcher
+    getattr(self, m)(c, e)
+  File "/home/betezed/botnc/bot.py", line 70, in on_pubmsg
+    self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
+  File "/home/betezed/botnc/modules/ModMd5.py", line 13, in execute
+    response = urllib2.urlopen(url)
+NameError: global name 'urllib2' is not defined
+Bot start PixiBot
+#Day: 8 vs 7
+#Day: 9 vs 8
+Bot start PixiBot
+Bot start PixiBot
+Bot start PixiBot
+Bot start PixiBot
+MSG
+#0x90r00t test
+PRIVMSG
+#0x90r00t test
+SAY
+#0x90r00t is thinking
+Madame, page http://www.bonjourmadame.fr/page/417
+http://41.media.tumblr.com/6f416a0feca9b1f0ed31af0c54c89c4e/tumblr_n354uqa5LP1qzy9ouo1_1280.png
