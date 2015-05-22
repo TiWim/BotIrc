@@ -1,15 +1,17 @@
+# -*- coding: utf-8 -*-
 from config import Config
 import time
 from lib import ircbot, irclib
 import re
-from modules import ModSay, ModBot, ModBoobies, ModStat, ModRmd5, ModMd5, ModHelp, utils
+from modules import ModSay, ModBot, ModBoobies, ModRmd5, ModMd5, ModHelp, utils
 
 class BetezedBot(ircbot.SingleServerIRCBot):
     config = Config()
     first_flood = True
     last_time = time.time()
     current_time = 99999999999
-    canal = "#open-newbiecontest"
+    #canal = "#open-newbiecontest"
+    canal = "#0x90r00t"
     canal_test = "#pixistest"
     name = "PixiBot"
     flood_time = 3
@@ -23,9 +25,9 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         ModBoobies: {"module": "modules.ModBoobies.ModBoobies",
                      "instance": None,
                      "cmd": "!boobies"},
-        ModStat: {"module": "modules.ModStat.ModStat",
-                  "instance": None,
-                  "cmd": "!stat"},
+        #ModStat: {"module": "modules.ModStat.ModStat",
+        #          "instance": None,
+        #          "cmd": "!stat"},
         ModRmd5: {"module": "modules.ModRmd5.ModRmd5",
                   "instance": None,
                   "cmd": "!rmd5"},
@@ -44,15 +46,17 @@ class BetezedBot(ircbot.SingleServerIRCBot):
 
     def on_welcome(self, serv, ev):
         serv.join(self.canal)
-        serv.join("#nboobz_cmb")
-        serv.join("#0x90r00t")
+        #serv.join("#nboobz_cmb")
+        #serv.join("#0x90r00t")
         #serv.join(self.canal_test)
         serv.privmsg('NickServ', "IDENTIFY " + self.config.password)
     def on_join(self, serv, ev):
         handle = irclib.nm_to_n(ev.source())
         canal = ev.target()
-        if canal == "#0x90r00t":
-            serv.send_raw("MODE " + canal + " +o " + handle)
+        #if canal == "#0x90r00t" or canal == "#nboobz_cmb":
+        #    if canal == "#nboobz_cmb":
+        #    	serv.send_raw("MODE " + canal + " +o " + handle)
+            # serv.privmsg(canal, "Nous avons un serveur irc privé maintenant, sevreur : irc.0x90r00t.com 6697 (Utilise SSL, certificat non trusté), password par MP via Pixis, the_lsd, CirClips, Nodulaire, Wtf")
 
     def on_kick(self, serv, ev):
         canal = ev.target()
@@ -64,8 +68,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         canal = ev.target()
         message = ev.arguments()[0]
         self.log_message(message)
-        if re.match(r'^wtf_*', handle.lower()) is None:
-            self.mods[ModStat]['instance'].update_counts(handle)
+        #if re.match(r'^wtf_*', handle.lower()) is None:
+        #    self.mods[ModStat]['instance'].update_counts(handle)
         if '!reload' in message and "pixis" == handle.lower():
             custom_message = utils.extract_message(message, '!reload')
             self.check_reload(serv, canal, handle, custom_message)
