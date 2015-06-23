@@ -1,0 +1,368 @@
+mode
+#0x90r00t -m PixiBot
+MODE
+#0x90r00t -m PixiBot
+PRIVMSG
+#0x90r00t /test
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 1, in <module>
+    from bot import BetezedBot
+  File "/home/betezed/botnc/bot.py", line 56
+SyntaxError: Non-ASCII character '\xc3' in file /home/betezed/botnc/bot.py on line 56, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 1, in <module>
+    from bot import BetezedBot
+  File "/home/betezed/botnc/bot.py", line 56
+SyntaxError: Non-ASCII character '\xc3' in file /home/betezed/botnc/bot.py on line 56, but no encoding declared; see http://www.python.org/peps/pep-0263.html for details
+Bot start PixiBot
+Bot start PixiBot
+Bot start PixiBot
+Bot start PixiBot
+Bot start PixiBot
+#Day: 21 vs 20
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/lib/ircbot.py", line 248, in start
+    SimpleIRCClient.start(self)
+  File "/home/betezed/botnc/lib/irclib.py", line 1114, in start
+    self.ircobj.process_forever()
+  File "/home/betezed/botnc/lib/irclib.py", line 229, in process_forever
+    self.process_once(timeout)
+  File "/home/betezed/botnc/lib/irclib.py", line 214, in process_once
+    self.process_data(i)
+  File "/home/betezed/botnc/lib/irclib.py", line 183, in process_data
+    c.process_data()
+  File "/home/betezed/botnc/lib/irclib.py", line 581, in process_data
+    self._handle_event(Event(command, prefix, target, [m]))
+  File "/home/betezed/botnc/lib/irclib.py", line 604, in _handle_event
+    self.irclibobj._handle_event(self, event)
+  File "/home/betezed/botnc/lib/irclib.py", line 325, in _handle_event
+    if handler[1](connection, event) == "NO MORE":
+  File "/home/betezed/botnc/lib/irclib.py", line 1049, in _dispatcher
+    getattr(self, m)(c, e)
+  File "/home/betezed/botnc/bot.py", line 71, in on_pubmsg
+    self.mods[ModStat]['instance'].update_counts(handle)
+  File "/home/betezed/botnc/modules/ModStat.py", line 46, in update_counts
+    self.add_count(handle)
+  File "/home/betezed/botnc/modules/ModStat.py", line 49, in add_count
+    self.day_collection.update({'handle': handle}, {'$inc': {'messages': 1}}, upsert=True)
+  File "build/bdist.linux-x86_64/egg/pymongo/collection.py", line 551, in update
+  File "build/bdist.linux-x86_64/egg/pymongo/message.py", line 393, in _do_batched_write_command
+  File "build/bdist.linux-x86_64/egg/pymongo/message.py", line 345, in send_message
+  File "build/bdist.linux-x86_64/egg/pymongo/mongo_client.py", line 1111, in _send_message
+  File "build/bdist.linux-x86_64/egg/pymongo/mongo_client.py", line 919, in __socket
+pymongo.errors.AutoReconnect: could not connect to localhost:27017: [Errno 111] Connection refused
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 1, in <module>
+    from bot import BetezedBot
+  File "/home/betezed/botnc/bot.py", line 6, in <module>
+    from modules import ModSay, ModBot, ModBoobies, ModStat, ModRmd5, ModMd5, ModHelp, utils
+  File "/home/betezed/botnc/modules/ModStat.py", line 8, in <module>
+    class ModStat:
+  File "/home/betezed/botnc/modules/ModStat.py", line 23, in ModStat
+    client = MongoClient()
+  File "build/bdist.linux-x86_64/egg/pymongo/mongo_client.py", line 369, in __init__
+pymongo.errors.ConnectionFailure: [Errno 111] Connection refused
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 1, in <module>
+    from bot import BetezedBot
+  File "/home/betezed/botnc/bot.py", line 6, in <module>
+    from modules import ModSay, ModBot, ModBoobies, ModStat, ModRmd5, ModMd5, ModHelp, utils
+  File "/home/betezed/botnc/modules/ModStat.py", line 8, in <module>
+    class ModStat:
+  File "/home/betezed/botnc/modules/ModStat.py", line 23, in ModStat
+    client = MongoClient()
+  File "build/bdist.linux-x86_64/egg/pymongo/mongo_client.py", line 369, in __init__
+pymongo.errors.ConnectionFailure: [Errno 111] Connection refused
+Bot start PixiBot
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/lib/ircbot.py", line 248, in start
+    SimpleIRCClient.start(self)
+  File "/home/betezed/botnc/lib/irclib.py", line 1114, in start
+    self.ircobj.process_forever()
+  File "/home/betezed/botnc/lib/irclib.py", line 229, in process_forever
+    self.process_once(timeout)
+  File "/home/betezed/botnc/lib/irclib.py", line 214, in process_once
+    self.process_data(i)
+  File "/home/betezed/botnc/lib/irclib.py", line 183, in process_data
+    c.process_data()
+  File "/home/betezed/botnc/lib/irclib.py", line 581, in process_data
+    self._handle_event(Event(command, prefix, target, [m]))
+  File "/home/betezed/botnc/lib/irclib.py", line 604, in _handle_event
+    self.irclibobj._handle_event(self, event)
+  File "/home/betezed/botnc/lib/irclib.py", line 325, in _handle_event
+    if handler[1](connection, event) == "NO MORE":
+  File "/home/betezed/botnc/lib/irclib.py", line 1049, in _dispatcher
+    getattr(self, m)(c, e)
+  File "/home/betezed/botnc/bot.py", line 72, in on_pubmsg
+    self.mods[ModStat]['instance'].update_counts(handle)
+NameError: global name 'ModStat' is not defined
+Bot start PixiBot
+Madame, page http://www.bonjourmadame.fr/page/1586
+http://40.media.tumblr.com/tumblr_lf6xkuO72R1qzy9ouo1_1280.jpg
+Bot start PixiBot
+PRIVMSG
+ChanServ aop #0x90r00t add CirClipS 
+PRIVMSG
+ChanServ aop #0x90r00t add Pixis
+say
+#0x90r00t s'ennuie
+Bot start PixiBot
+PRIVMSG
+#0x90r00t I'm you master
+PRIVMSG
+#0x90r00t And I mispell everything
+#Day: 23 vs 22
+#Day: 24 vs 23
+#Day: 25 vs 24
+#Week: 0 vs 0
+Madame, page http://www.bonjourmadame.fr/page/1358
+http://40.media.tumblr.com/tumblr_lr0gbaDh0r1qzy9ouo1_r1_500.jpg
+#Day: 26 vs 25
+Bot start PixiBot
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/bot.py", line 48, in __init__
+    self.init_mods()
+  File "/home/betezed/botnc/bot.py", line 122, in init_mods
+    self.mods[key]['instance'] = utils.get_class(mod['module'])()
+  File "/home/betezed/botnc/modules/utils.py", line 22, in get_class
+    m = getattr(m, comp)
+AttributeError: 'module' object has no attribute 'ModNc'
+Bot start PixiBot
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/bot.py", line 48, in __init__
+    self.init_mods()
+  File "/home/betezed/botnc/bot.py", line 122, in init_mods
+    self.mods[key]['instance'] = utils.get_class(mod['module'])()
+  File "/home/betezed/botnc/modules/utils.py", line 22, in get_class
+    m = getattr(m, comp)
+AttributeError: 'module' object has no attribute 'ModNc'
+Bot start PixiBot
+#Day: 27 vs 26
+Bot start PixiBot
+#Day: 28 vs 27
+Flood : 1432796227.25 - 1432796226.23
+Flood : 1432811173.0 - 1432811172.29
+Flood : 1432811184.51 - 1432811183.46
+Flood : 1432811184.51 - 1432811184.51
+Flood : 1432811192.54 - 1432811189.55
+Flood : 1432811192.55 - 1432811192.54
+Flood : 1432811194.69 - 1432811192.55
+Flood : 1432811196.58 - 1432811194.69
+Flood : 1432811197.59 - 1432811196.58
+Flood : 1432811203.44 - 1432811200.84
+Flood : 1432811204.88 - 1432811203.44
+Flood : 1432811205.98 - 1432811204.88
+Flood : 1432811207.0 - 1432811205.98
+Flood : 1432811207.86 - 1432811207.0
+Flood : 1432811220.84 - 1432811219.69
+PRIVMSG
+#0x90r00t !vote y
+PRIVMSG
+#0x90r00t !vote y
+#Day: 28 vs 27
+#Day: 28 vs 27
+#Day: 28 vs 27
+#Day: 28 vs 27
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/lib/ircbot.py", line 248, in start
+    SimpleIRCClient.start(self)
+  File "/home/betezed/botnc/lib/irclib.py", line 1114, in start
+    self.ircobj.process_forever()
+  File "/home/betezed/botnc/lib/irclib.py", line 229, in process_forever
+    self.process_once(timeout)
+  File "/home/betezed/botnc/lib/irclib.py", line 214, in process_once
+    self.process_data(i)
+  File "/home/betezed/botnc/lib/irclib.py", line 183, in process_data
+    c.process_data()
+  File "/home/betezed/botnc/lib/irclib.py", line 581, in process_data
+    self._handle_event(Event(command, prefix, target, [m]))
+  File "/home/betezed/botnc/lib/irclib.py", line 604, in _handle_event
+    self.irclibobj._handle_event(self, event)
+  File "/home/betezed/botnc/lib/irclib.py", line 325, in _handle_event
+    if handler[1](connection, event) == "NO MORE":
+  File "/home/betezed/botnc/lib/irclib.py", line 1049, in _dispatcher
+    getattr(self, m)(c, e)
+  File "/home/betezed/botnc/bot.py", line 86, in on_pubmsg
+    self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
+  File "/home/betezed/botnc/modules/ModVote.py", line 80, in execute
+    poll_collection.update({"id": self.poll_id}, {"poll": self.current_poll, "y": str(self.countY), "n": str(self.countN), "nicks": self.nicks}, upsert=True)
+NameError: global name 'poll_collection' is not defined
+Bot start PixiBot
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/bot.py", line 51, in __init__
+    self.init_mods()
+  File "/home/betezed/botnc/bot.py", line 125, in init_mods
+    self.mods[key]['instance'] = utils.get_class(mod['module'])()
+  File "/home/betezed/botnc/modules/ModVote.py", line 19, in __init__
+    self.poll_id = self.poll_list[-1]['poll_id'] + 1
+IndexError: list index out of range
+Bot start PixiBot
+Flood : 1432847992.34 - 1432847992.3
+Bot start PixiBot
+Flood : 1432848083.26 - 1432848082.71
+Flood : 1432848083.93 - 1432848083.26
+Flood : 1432848084.4 - 1432848083.93
+Flood : 1432848085.02 - 1432848084.4
+Flood : 1432848085.16 - 1432848085.02
+Flood : 1432848085.62 - 1432848085.16
+Flood : 1432848092.95 - 1432848091.02
+Flood : 1432848097.84 - 1432848096.52
+Flood : 1432848100.59 - 1432848097.84
+Flood : 1432848103.05 - 1432848100.59
+Flood : 1432848108.69 - 1432848107.97
+Flood : 1432848114.77 - 1432848112.36
+Flood : 1432848126.33 - 1432848124.07
+Flood : 1432848130.6 - 1432848130.36
+Flood : 1432848154.53 - 1432848153.39
+Flood : 1432848165.64 - 1432848163.03
+Flood : 1432848168.33 - 1432848165.64
+Flood : 1432848368.45 - 1432848367.42
+Flood : 1432848370.67 - 1432848368.45
+Bot start PixiBot
+Flood : 1432848553.47 - 1432848552.93
+Flood : 1432848553.62 - 1432848553.47
+Flood : 1432848554.24 - 1432848553.62
+Flood : 1432848556.43 - 1432848554.24
+Bot start PixiBot
+Flood : 1432848767.41 - 1432848764.93
+Flood : 1432848768.9 - 1432848767.41
+Flood : 1432848771.69 - 1432848768.9
+Flood : 1432848787.03 - 1432848784.37
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/lib/ircbot.py", line 248, in start
+    SimpleIRCClient.start(self)
+  File "/home/betezed/botnc/lib/irclib.py", line 1114, in start
+    self.ircobj.process_forever()
+  File "/home/betezed/botnc/lib/irclib.py", line 229, in process_forever
+    self.process_once(timeout)
+  File "/home/betezed/botnc/lib/irclib.py", line 214, in process_once
+    self.process_data(i)
+  File "/home/betezed/botnc/lib/irclib.py", line 183, in process_data
+    c.process_data()
+  File "/home/betezed/botnc/lib/irclib.py", line 581, in process_data
+    self._handle_event(Event(command, prefix, target, [m]))
+  File "/home/betezed/botnc/lib/irclib.py", line 604, in _handle_event
+    self.irclibobj._handle_event(self, event)
+  File "/home/betezed/botnc/lib/irclib.py", line 325, in _handle_event
+    if handler[1](connection, event) == "NO MORE":
+  File "/home/betezed/botnc/lib/irclib.py", line 1049, in _dispatcher
+    getattr(self, m)(c, e)
+  File "/home/betezed/botnc/bot.py", line 81, in on_pubmsg
+    self.check_reload(serv, canal, handle, custom_message)
+  File "/home/betezed/botnc/bot.py", line 119, in check_reload
+    key = reload(key)
+  File "/home/betezed/botnc/modules/ModVote.py", line 77
+    serv.privmsg(canal, "History of " + str(len(self.poll_list)) _ " polls in notice")
+                                                                 ^
+SyntaxError: invalid syntax
+Bot start PixiBot
+Flood : 1432848998.15 - 1432848995.3
+Flood : 1432849115.57 - 1432849113.02
+Flood : 1432849195.2 - 1432849192.56
+Flood : 1432849207.58 - 1432849207.15
+Flood : 1432849209.6 - 1432849207.58
+Flood : 1432849210.84 - 1432849209.6
+Flood : 1432849211.36 - 1432849210.84
+Flood : 1432849226.7 - 1432849226.66
+Flood : 1432849226.7 - 1432849226.7
+Flood : 1432849226.98 - 1432849226.7
+Bot start PixiBot
+Bot start PixiBot
+#Day: 30 vs 29
+Madame, page http://www.bonjourmadame.fr/page/1821
+http://36.media.tumblr.com/tumblr_l4tnvl0bMy1qzy9ouo1_1280.jpg
+#Day: 31 vs 30
+Madame, page http://www.bonjourmadame.fr/page/1642
+http://41.media.tumblr.com/tumblr_lcpt7wN0o71qzy9ouo1_500.jpg
+Madame, page http://www.bonjourmadame.fr/page/1308
+http://41.media.tumblr.com/tumblr_ltwk3i3oBn1qzy9ouo1_1280.jpg
+#Day: 1 vs 31
+#Week: 0 vs 0
+#Month: 6 vs 5
+#Day: 2 vs 1
+Bot start PixiBot
+Flood : 1433259409.14 - 1433259407.84
+Bot start PixiBot
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 4, in <module>
+    BetezedBot().start()
+  File "/home/betezed/botnc/lib/ircbot.py", line 248, in start
+    SimpleIRCClient.start(self)
+  File "/home/betezed/botnc/lib/irclib.py", line 1114, in start
+    self.ircobj.process_forever()
+  File "/home/betezed/botnc/lib/irclib.py", line 229, in process_forever
+    self.process_once(timeout)
+  File "/home/betezed/botnc/lib/irclib.py", line 214, in process_once
+    self.process_data(i)
+  File "/home/betezed/botnc/lib/irclib.py", line 183, in process_data
+    c.process_data()
+  File "/home/betezed/botnc/lib/irclib.py", line 581, in process_data
+    self._handle_event(Event(command, prefix, target, [m]))
+  File "/home/betezed/botnc/lib/irclib.py", line 604, in _handle_event
+    self.irclibobj._handle_event(self, event)
+  File "/home/betezed/botnc/lib/irclib.py", line 325, in _handle_event
+    if handler[1](connection, event) == "NO MORE":
+  File "/home/betezed/botnc/lib/irclib.py", line 1049, in _dispatcher
+    getattr(self, m)(c, e)
+  File "/home/betezed/botnc/bot.py", line 98, in on_pubmsg
+    self.privmsg(canal, "Module not enabled for the moment");
+AttributeError: BetezedBot instance has no attribute 'privmsg'
+Bot start PixiBot
+Bot start PixiBot
+#Day: 3 vs 2
+Bot start PixiBot
+#Day: 4 vs 3
+#Day: 5 vs 4
+#Day: 6 vs 5
+#Day: 7 vs 6
+#Day: 8 vs 7
+#Week: 0 vs 0
+#Day: 9 vs 8
+#Day: 10 vs 9
+#Day: 11 vs 10
+#Day: 12 vs 11
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 1, in <module>
+    from bot import BetezedBot
+  File "/home/betezed/botnc/bot.py", line 145
+    if !enable:
+       ^
+SyntaxError: invalid syntax
+Bot start PixiBot
+Bot start PixiBot
+Bot start PixiBot
+Bot start PixiBot
+#Day: 13 vs 12
+#Day: 14 vs 13
+Bot start PixiBot
+#Day: 15 vs 14
+#Week: 0 vs 0
+Flood : 1434357590.68 - 1434357589.86
+#Day: 16 vs 15
+#Day: 17 vs 16
+Traceback (most recent call last):
+  File "/home/betezed/botnc/main.py", line 1, in <module>
+    from bot import BetezedBot
+  File "/home/betezed/botnc/bot.py", line 6, in <module>
+    from modules import ModSay, ModBot, ModBoobies, ModRmd5, ModMd5, ModHelp, utils, ModStat, ModNc, ModVote
+  File "/home/betezed/botnc/modules/ModStat.py", line 8, in <module>
+    class ModStat:
+  File "/home/betezed/botnc/modules/ModStat.py", line 23, in ModStat
+    client = MongoClient()
+  File "build/bdist.linux-x86_64/egg/pymongo/mongo_client.py", line 369, in __init__
+pymongo.errors.ConnectionFailure: [Errno 111] Connection refused
+Bot start PixiBot

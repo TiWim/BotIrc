@@ -209,7 +209,7 @@ class SingleServerIRCBot(SimpleIRCClient):
 
         Used when answering a CTCP VERSION request.
         """
-        return "ircbot.py by Joel Rosdahl <joel@rosdahl.net>"
+        return "Pixibot, le seul et unique !"
 
     def jump_server(self, msg="Changing servers"):
         """Connect to a new server, possibly disconnecting from the current.

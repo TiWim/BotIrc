@@ -3,39 +3,54 @@ from config import Config
 import time
 from lib import ircbot, irclib
 import re
-from modules import ModSay, ModBot, ModBoobies, ModRmd5, ModMd5, ModHelp, utils
+from modules import ModSay, ModBot, ModBoobies, ModRmd5, ModMd5, ModHelp, utils, ModStat, ModNc, ModVote
 
 class BetezedBot(ircbot.SingleServerIRCBot):
     config = Config()
     first_flood = True
     last_time = time.time()
     current_time = 99999999999
-    #canal = "#open-newbiecontest"
-    canal = "#0x90r00t"
+    canal = "#open-newbiecontest"
+    #canal = "#0x90r00t"
     canal_test = "#pixistest"
     name = "PixiBot"
     flood_time = 3
     mods = {
         ModSay: {"module": "modules.ModSay.ModSay",
                  "instance": None,
+                 "enabled": True,
                  "cmd": "!say"},
+        ModNc: {"module": "modules.ModNc.ModNc",
+                 "instance": None,
+                 "enabled": True,
+                 "cmd": "!nc"},
+        ModVote: {"module": "modules.ModVote.ModVote",
+                 "instance": None,
+                 "enabled": False,
+                 "cmd": "!vote"},
         ModBot: {"module": "modules.ModBot.ModBot",
                  "instance": None,
+                 "enabled": True,
                  "cmd": "!bot"},
         ModBoobies: {"module": "modules.ModBoobies.ModBoobies",
                      "instance": None,
+                 "enabled": True,
                      "cmd": "!boobies"},
-        #ModStat: {"module": "modules.ModStat.ModStat",
-        #          "instance": None,
-        #          "cmd": "!stat"},
+        ModStat: {"module": "modules.ModStat.ModStat",
+                  "instance": None,
+                 "enabled": True,
+                  "cmd": "!stat"},
         ModRmd5: {"module": "modules.ModRmd5.ModRmd5",
                   "instance": None,
+                 "enabled": True,
                   "cmd": "!rmd5"},
         ModMd5: {"module": "modules.ModMd5.ModMd5",
                  "instance": None,
+                 "enabled": True,
                  "cmd": "!md5"},
         ModHelp: {"module": "modules.ModHelp.ModHelp",
                  "instance": None,
+                 "enabled": True,
                  "cmd": "!help"}
     }
 
@@ -53,10 +68,6 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     def on_join(self, serv, ev):
         handle = irclib.nm_to_n(ev.source())
         canal = ev.target()
-        #if canal == "#0x90r00t" or canal == "#nboobz_cmb":
-        #    if canal == "#nboobz_cmb":
-        #    	serv.send_raw("MODE " + canal + " +o " + handle)
-            # serv.privmsg(canal, "Nous avons un serveur irc privé maintenant, sevreur : irc.0x90r00t.com 6697 (Utilise SSL, certificat non trusté), password par MP via Pixis, the_lsd, CirClips, Nodulaire, Wtf")
 
     def on_kick(self, serv, ev):
         canal = ev.target()
@@ -68,16 +79,25 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         canal = ev.target()
         message = ev.arguments()[0]
         self.log_message(message)
-        #if re.match(r'^wtf_*', handle.lower()) is None:
-        #    self.mods[ModStat]['instance'].update_counts(handle)
+        if re.match(r'^wtf_*', handle.lower()) is None:
+            self.mods[ModStat]['instance'].update_counts(handle)
         if '!reload' in message and "pixis" == handle.lower():
             custom_message = utils.extract_message(message, '!reload')
             self.check_reload(serv, canal, handle, custom_message)
+        if '!enable' in message and "pixis" == handle.lower():
+            custom_message = utils.extract_message(message, '!enable')
+            self.enable(serv, canal, handle, custom_message, True)
+        if '!disable' in message and "pixis" == handle.lower():
+            custom_message = utils.extract_message(message, '!disable')
+            self.enable(serv, canal, handle, custom_message, False)
         for mod, value in self.mods.items():
             if value['cmd'] == message or re.match(r'^' + value['cmd'] + " ", message) is not None:
                 if not self.check_flood(serv, canal, handle):
-                    custom_message = utils.extract_message(message, value['cmd'])
-                    self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
+                    if self.mods[mod]['enabled']:
+                        custom_message = utils.extract_message(message, value['cmd'])
+                        self.mods[mod]['instance'].execute(serv, canal, handle, custom_message)
+                    else:
+                        serv.privmsg(canal, "Disabled")
 
     def on_privmsg(self, serv, ev):
         handle = irclib.nm_to_n(ev.source())
@@ -91,7 +111,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
 
     def check_flood(self, serv, canal, handle):
         self.current_time = time.time()
-        if self.current_time - self.last_time < self.flood_time:
+        if self.current_time - self.last_time < self.flood_time and handle.lower() != "pixis":
             print "Flood : " + str(self.current_time) + " - " + str(self.last_time)
             self.last_time = time.time()
             if self.first_flood:
@@ -113,7 +133,22 @@ class BetezedBot(ircbot.SingleServerIRCBot):
                 key = reload(key)
         serv.privmsg(canal, "* Reload des modules" + mod_loaded + " *")
         self.init_mods()
-
+    
+    def enable(self, serv, canal, handle, message, enable):
+        for mod, value in self.mods.items():
+            if value['cmd'].strip("!") == message.strip():
+                if self.mods[mod]['enabled'] == enable:
+                    if enable:
+                        serv.privmsg(canal, message + " already enabled !")
+                    else:
+                        serv.privmsg(canal, message + " already disabled !")
+                else:
+                    self.mods[mod]['enabled'] = enable 
+                    if not enable:
+                        serv.privmsg(canal, message + " disabled !")
+                    else:
+                        serv.privmsg(canal, message + " enabled !")
+ 
     def init_mods(self):
         for key, mod in self.mods.items():
             self.mods[key]['instance'] = utils.get_class(mod['module'])()

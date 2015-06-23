@@ -20,7 +20,7 @@ class ModStat:
 
     # Mongo
 
-    client = MongoClient()
+    client = MongoClient('localhost', 27017)
     db = client.botncDB
     day_collection = db.day
     week_collection = db.week

@@ -12,6 +12,9 @@ def extract_message(s, mod):
         return s[1]
     else:
         return ""
+def extract_command(s):
+    s = s.split(" ", 1)
+    return s[0]
 
 
 def get_class(cls):
