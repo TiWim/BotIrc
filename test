@@ -1,9 +1,0 @@
-<rss version="2.0">
-    <channel>
-        <title>RSS feed vulnerable</title>
-        <description>Content of /etc/passwd</description>
-        <item>
-            <title>hello</title>
-        </item>
-    </channel>
-</rss>
