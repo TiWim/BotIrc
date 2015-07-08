@@ -15,7 +15,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# There is some important code in lib/
+# lib/
 lib64/
 parts/
 sdist/
