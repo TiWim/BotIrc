@@ -124,7 +124,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     def check_flood(self, serv, canal, handle):
         self.current_time = time.time()
         if self.current_time - self.last_time < self.flood_time and
-        handle.lower() != "pixis":
+        handle not in admin:
             print "Flood : " + str(self.current_time) + " - " +
             str(self.last_time)
             self.last_time = time.time()
@@ -143,9 +143,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         for key, value in self.mods.items():
             parts = value['module'].split(".")
             module = parts[2]
-            if module != "ModStat" or "force" == message:
-                mod_loaded = mod_loaded + " " + module
-                key = reload(key)
+            mod_loaded = mod_loaded + " " + module
+            key = reload(key)
         serv.privmsg(canal, "* Reload des modules" + mod_loaded + " *")
         self.init_mods()
 
