@@ -55,10 +55,13 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         utils.logs("Bot start " + self.name)
         ircbot.SingleServerIRCBot.__init__(self, [(self.server, self.port)],
                                            self.name, "Bot de Pixis", 10)
+        utils.logs("Bot started")
         self.init_mods()
+        utils.logs("Mods loaded")
 
     def on_welcome(self, serv, ev):
         serv.join(self.canal)
+        utils.logs(self.canal + "joined")
         # serv.join("#nboobz_cmb")
         # serv.join("#0x90r00t")
         # serv.join(self.canal_test)
@@ -70,6 +73,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
 
     def on_kick(self, serv, ev):
         canal = ev.target()
+        utils.logs("Kicked from canal '" + canal + "'. Joining in 2 seconds.")
         time.sleep(2)
         serv.join(canal)
 
@@ -116,7 +120,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     def check_flood(self, serv, canal, handle):
         self.current_time = time.time()
         if self.current_time - self.last_time < self.flood_time and handle not in self.admin:
-            print "Flood : " + str(self.current_time) + " - " + str(self.last_time)
+            utils.logs("Flood : " + str(self.current_time) + " - " + str(self.last_time))
             self.last_time = time.time()
             if self.first_flood:
                 serv.privmsg(canal, "Hey doucement " + handle +
@@ -135,8 +139,10 @@ class BetezedBot(ircbot.SingleServerIRCBot):
             module = parts[2]
             mod_loaded = mod_loaded + " " + module
             key = reload(key)
+        utils.logs("Reloading modules")
         serv.privmsg(canal, "* Reload des modules" + mod_loaded + " *")
         self.init_mods()
+        utils.logs("Modules reloaded")
 
     def enable(self, serv, canal, handle, message, enable):
         for mod, value in self.mods.items():
@@ -156,17 +162,3 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     def init_mods(self):
         for key, mod in self.mods.items():
             self.mods[key]['instance'] = utils.get_class(mod['module'])()
-
-    def log_message(self, message):
-        if self.name in message:
-            with open("log.txt", "a") as logfile:
-                logfile.write("raw : " + message + "\n")
-        if "pixis" in message.lower():
-            with open("log.txt", "a") as logfile:
-                logfile.write("** " + message + " **\n")
-        for mod, value in self.mods.items():
-            if value['cmd'] in message:
-                custom_message = utils.extract_message(message, value['cmd'])
-                with open("log.txt", "a") as logfile:
-                    logfile.write(value['cmd'] + " " + custom_message +
-                                  " (raw : " + message + ")\n")
