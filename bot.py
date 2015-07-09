@@ -14,7 +14,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     last_time = time.time()
     current_time = 99999999999
     canal = "#open-newbiecontest"
-    #canal = "#0x90r00t"
+    # canal = "#0x90r00t"
     canal_test = "#pixistest"
     name = "PixiBot"
     flood_time = 3
@@ -23,51 +23,43 @@ class BetezedBot(ircbot.SingleServerIRCBot):
                  "instance": None,
                  "enabled": True,
                  "cmd": "!say"},
-        ModNc: {"module": "modules.ModNc.ModNc",
-                 "instance": None,
-                 "enabled": True,
-                 "cmd": "!nc"},
         ModVote: {"module": "modules.ModVote.ModVote",
-                 "instance": None,
-                 "enabled": False,
-                 "cmd": "!vote"},
+                  "instance": None,
+                  "enabled": False,
+                  "cmd": "!vote"},
         ModBot: {"module": "modules.ModBot.ModBot",
                  "instance": None,
                  "enabled": True,
                  "cmd": "!bot"},
-        ModBoobies: {"module": "modules.ModBoobies.ModBoobies",
-                     "instance": None,
-                 "enabled": True,
-                     "cmd": "!boobies"},
         ModStat: {"module": "modules.ModStat.ModStat",
                   "instance": None,
-                 "enabled": True,
+                  "enabled": True,
                   "cmd": "!stat"},
         ModRmd5: {"module": "modules.ModRmd5.ModRmd5",
                   "instance": None,
-                 "enabled": True,
+                  "enabled": True,
                   "cmd": "!rmd5"},
         ModMd5: {"module": "modules.ModMd5.ModMd5",
                  "instance": None,
                  "enabled": True,
                  "cmd": "!md5"},
         ModHelp: {"module": "modules.ModHelp.ModHelp",
-                 "instance": None,
-                 "enabled": True,
-                 "cmd": "!help"}
+                  "instance": None,
+                  "enabled": True,
+                  "cmd": "!help"}
     }
 
     def __init__(self):
         print "Bot start " + self.name
         ircbot.SingleServerIRCBot.__init__(self, [("irc.worldnet.net", 6667)],
-                self.name, "Bot de Pixis")
+                                           self.name, "Bot de Pixis", 10)
         self.init_mods()
 
     def on_welcome(self, serv, ev):
         serv.join(self.canal)
-        #serv.join("#nboobz_cmb")
-        #serv.join("#0x90r00t")
-        #serv.join(self.canal_test)
+        # serv.join("#nboobz_cmb")
+        # serv.join("#0x90r00t")
+        # serv.join(self.canal_test)
         serv.privmsg('NickServ', "IDENTIFY " + self.config.password)
 
     def on_join(self, serv, ev):
@@ -84,8 +76,6 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         canal = ev.target()
         message = ev.arguments()[0]
         self.log_message(message)
-        if re.match(r'^wtf_*', handle.lower()) is None:
-            self.mods[ModStat]['instance'].update_counts(handle)
         if handle in admin:
             if '!reload' in message:
                 custom_message = utils.extract_message(message, '!reload')
@@ -98,13 +88,13 @@ class BetezedBot(ircbot.SingleServerIRCBot):
                 self.enable(serv, canal, handle, custom_message, False)
         for mod, value in self.mods.items():
             if value['cmd'] == message or re.match(r'^' + value['cmd'] + " ",
-                    message) is not None:
+                                                   message) is not None:
                 if not self.check_flood(serv, canal, handle):
                     if self.mods[mod]['enabled']:
                         custom_message = utils.extract_message(message,
-                                value['cmd'])
-                        self.mods[mod]['instance'].execute(serv, canal,
-                                handle, custom_message)
+                                                               value['cmd'])
+                        self.mods[mod]['instance'].execute(serv, canal, handle,
+                                                           custom_message)
                     else:
                         serv.privmsg(canal, "Disabled")
 
@@ -117,9 +107,9 @@ class BetezedBot(ircbot.SingleServerIRCBot):
                     message) is not None:
                 if not self.check_flood(serv, canal, handle):
                     custom_message = utils.extract_message(message,
-                            value['cmd'])
+                                                           value['cmd'])
                     self.mods[mod]['instance'].execute(serv, canal, handle,
-                            custom_message)
+                                                       custom_message)
 
     def check_flood(self, serv, canal, handle):
         self.current_time = time.time()
@@ -130,7 +120,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
             self.last_time = time.time()
             if self.first_flood:
                 serv.privmsg(canal, "Hey doucement " + handle +
-                        ", je ne suis pas un robot !")
+                             ", je ne suis pas un robot !")
                 self.first_flood = False
             return True
         else:
@@ -179,4 +169,4 @@ class BetezedBot(ircbot.SingleServerIRCBot):
                 custom_message = utils.extract_message(message, value['cmd'])
                 with open("log.txt", "a") as logfile:
                     logfile.write(value['cmd'] + " " + custom_message +
-                            " (raw : " + message + ")\n")
+                                  " (raw : " + message + ")\n")
