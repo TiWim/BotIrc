@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
-from config import Config
+# from config import Config
 import time
 from lib import ircbot, irclib
 import re
-from modules import ModSay, ModBot, ModBoobies, ModRmd5, ModMd5, ModHelp,
-utils, ModStat, ModNc, ModVote
+from modules import ModSay, ModBot, ModRmd5, ModMd5, ModHelp, utils
+# , ModStat, ModVote
 
 
 class BetezedBot(ircbot.SingleServerIRCBot):
-    config = Config()
-    admin = ["Pixis", "Betezed"]
+    # config = Config()
+    admin = ["Pixis", "TiWim"]  # "Betezed"]
     first_flood = True
     last_time = time.time()
     current_time = 99999999999
-    canal = "#open-newbiecontest"
+    canal = "#Bots_room"  # "#open-newbiecontest"
     # canal = "#0x90r00t"
-    canal_test = "#pixistest"
+    server = "irc.root-me.org"  # "irc.worldnet.net"
+    port = 6667
+    canal_test = canal  # "#pixistest"
     name = "PixiBot"
     flood_time = 3
     mods = {
@@ -23,18 +25,18 @@ class BetezedBot(ircbot.SingleServerIRCBot):
                  "instance": None,
                  "enabled": True,
                  "cmd": "!say"},
-        ModVote: {"module": "modules.ModVote.ModVote",
-                  "instance": None,
-                  "enabled": False,
-                  "cmd": "!vote"},
+#        ModVote: {"module": "modules.ModVote.ModVote",
+#                  "instance": None,
+#                  "enabled": False,
+#                  "cmd": "!vote"},
         ModBot: {"module": "modules.ModBot.ModBot",
                  "instance": None,
                  "enabled": True,
                  "cmd": "!bot"},
-        ModStat: {"module": "modules.ModStat.ModStat",
-                  "instance": None,
-                  "enabled": True,
-                  "cmd": "!stat"},
+#        ModStat: {"module": "modules.ModStat.ModStat",
+#                  "instance": None,
+#                  "enabled": True,
+#                  "cmd": "!stat"},
         ModRmd5: {"module": "modules.ModRmd5.ModRmd5",
                   "instance": None,
                   "enabled": True,
@@ -50,8 +52,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
     }
 
     def __init__(self):
-        print "Bot start " + self.name
-        ircbot.SingleServerIRCBot.__init__(self, [("irc.worldnet.net", 6667)],
+        utils.logs("Bot start " + self.name)
+        ircbot.SingleServerIRCBot.__init__(self, [(self.server, self.port)],
                                            self.name, "Bot de Pixis", 10)
         self.init_mods()
 
@@ -60,7 +62,7 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         # serv.join("#nboobz_cmb")
         # serv.join("#0x90r00t")
         # serv.join(self.canal_test)
-        serv.privmsg('NickServ', "IDENTIFY " + self.config.password)
+  #      serv.privmsg('NickServ', "IDENTIFY " + self.config.password)
 
     def on_join(self, serv, ev):
         handle = irclib.nm_to_n(ev.source())
@@ -75,8 +77,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
         handle = irclib.nm_to_n(ev.source())
         canal = ev.target()
         message = ev.arguments()[0]
-        self.log_message(message)
-        if handle in admin:
+        utils.logs(message)
+        if handle in self.admin:
             if '!reload' in message:
                 custom_message = utils.extract_message(message, '!reload')
                 self.check_reload(serv, canal, handle, custom_message)
@@ -113,10 +115,8 @@ class BetezedBot(ircbot.SingleServerIRCBot):
 
     def check_flood(self, serv, canal, handle):
         self.current_time = time.time()
-        if self.current_time - self.last_time < self.flood_time and
-        handle not in admin:
-            print "Flood : " + str(self.current_time) + " - " +
-            str(self.last_time)
+        if self.current_time - self.last_time < self.flood_time and handle not in self.admin:
+            print "Flood : " + str(self.current_time) + " - " + str(self.last_time)
             self.last_time = time.time()
             if self.first_flood:
                 serv.privmsg(canal, "Hey doucement " + handle +

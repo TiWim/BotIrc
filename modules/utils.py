@@ -1,3 +1,5 @@
+import time
+
 def is_numeric(s):
     try:
         int(s)
@@ -24,3 +26,16 @@ def get_class(cls):
     for comp in parts[1:]:
         m = getattr(m, comp)
     return m
+
+def logs(message, level="INFO"):
+    """
+    Used to uniformise log reports
+
+    Params:
+        message         Message to print in logs
+
+    Output:
+        Date Level Message
+
+    """
+    print time.strftime("%d-%m-%y %H:%M:%S"), level, message
