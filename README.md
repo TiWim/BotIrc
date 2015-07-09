@@ -1,7 +1,8 @@
 BotIrc
 ======
 
-This bot writtent in python is based on
+This bot written in python is based on
+
 * irclib
 * ircbot
 
